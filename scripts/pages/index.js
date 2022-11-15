@@ -4,7 +4,8 @@ getPhotographers();
 async function getPhotographers() {
     fetch("/data/photographers.json")
     .then(response => response.json())  // convert to json
-    .then(json => console.log(json))    //print data to console
+    .then(json => console.log(json))   //print data to console
+    //.then((data) => listPhotographers(data))
     .catch(err => console.log('Request Failed', err)); // Catch errors
     // .then((response) => response.json())
     // .then((response) => alert(JSON.stringify(response)))
