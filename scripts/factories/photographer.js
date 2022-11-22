@@ -7,7 +7,11 @@ function photographerFactory(data) {
         const $article = document.createElement( 'article' );
         //pourquoi $ img?
         const $img = document.createElement( 'img' );
-        $img.setAttribute("src", picture)
+        $img.setAttribute("src", picture);
+        //ajout du alt mais erreur de syntaxe!!!!!!!
+        $img.alt= "portrait de  ${name}";
+        // ajout de object-fit: cover pour les id photographers
+        $img.style.objectFit = "cover";
         const $h2 = document.createElement( 'h2' );
         $h2.textContent = name;
         $article.appendChild($img);
