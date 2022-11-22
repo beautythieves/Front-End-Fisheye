@@ -5,6 +5,7 @@ function photographerFactory(data) {
     console.log(picture  )
     function getUserCardDOM() {
         const $article = document.createElement( 'article' );
+        //pourquoi $ img?
         const $img = document.createElement( 'img' );
         $img.setAttribute("src", picture)
         const $h2 = document.createElement( 'h2' );
