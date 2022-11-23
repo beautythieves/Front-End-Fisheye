@@ -28,8 +28,8 @@ async function displayData(photographers) {
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
+    const $cardWithLink = addLink(photographerModel.pagePath, photographerModel.templateCard);
+    photographersSection.appendChild($cardWithLink);
   });
 }
 
@@ -39,4 +39,10 @@ async function init() {
   displayData(photographers);
 }
 
+function addLink(target, content){
+  const link = document.createElement('a');
+  link.href = target;
+  link.innerHTML = content;
+  return link;
+}
 init();
