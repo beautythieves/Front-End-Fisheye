@@ -41,8 +41,16 @@ async function init() {
 
 function addLink(target, content){
   const link = document.createElement('a');
+  //ajout de la classe pour modif dans le css
+  link.className = "link_photographers";
   link.href = target;
   link.innerHTML = content;
+  console.log(content);
   return link;
 }
 init();
+
+// haschchange
+window.addEventListener("hashchange", () => {
+  console.log("The hash value has changed");
+});

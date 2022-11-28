@@ -48,3 +48,42 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+/* ajout de régle pour que l'image des photographes
+gardent le même ratio */
+.article_cover {
+   object-fit: cover;
+   border-radius: 50%;
+   max-width: 100%;
+   height: auto;
+
+}
+/* text deco none pour les liens */
+.link_photographers {
+    text-decoration: none;
+}
+.article_nom_photographe{
+    color: #D3573C;
+    font-size: 36px;
+    margin: 0px;
+}
+/* ajout de règles pour modifier la localisation des photgraphes*/
+.article_localisation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    color: #D3573C;
+    margin: auto;
+}
+.article_description{
+    margin: auto;
+    font-size: 10px;
+}
+/* modif pour correspondre au design */
+.article_prix {
+    color: #757575;
+    font-size: 9px;
+    font-weight: bold;
+    margin: auto;
+}
