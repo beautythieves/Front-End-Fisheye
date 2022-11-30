@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-  //ajout de city, country, price  dans const 
+  //ajout de city, country, price  dans const
   const { name, portrait, city, country, price, id, tagline } = data;
   console.log(data);
   console.log(city);
@@ -21,6 +21,21 @@ function photographerFactory(data) {
             <h5 class= "article_prix">${price}€/jour</h5>
             </article>
         `;
+  // nouvelle const pour la page photographer
+  const templatePagePhotographer = /*html*/ `
+    <article class="article_photograph" title= "photographies de ${name}">
+    <h2 class= "article_nom_photographe">${name}</h2>
+    <h3 class= "article_localisation">${city}, ${country}</h3>
+    <h4 class= "article_description">${tagline}</h4>
 
-  return { name, picture, pagePath, templateCard };
+    <img src="${picture}" alt="portrait de ${name}"  class="article_cover">
+        
+        </article>
+`;
+  return { name, picture, pagePath, templateCard, templatePagePhotographer };
+}
+
+
+export {
+    photographerFactory
 }

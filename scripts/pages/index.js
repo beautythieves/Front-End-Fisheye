@@ -1,4 +1,5 @@
-// getPhotographers();
+import {addLink, $page} from "../app.js";
+import {photographerFactory} from "../factories/photographer.js";
 
 async function getPhotographers() {
   try {
@@ -11,21 +12,17 @@ async function getPhotographers() {
   }
 }
 
-// function getPhotographersThen() {
-  // fetch("/data/photographers.json")
-  //   .then((response) => response.json()) // convert to json
-  //   .then((json) => console.table(json)) //json type object print data to console
-  //   // .then((data) => photographers(data))
-  //   .catch((err) => console.log("Request Failed", err)); // Catch errors
-  // // .then((response) => response.json())
-  // .then((response) => alert(JSON.stringify(response)))
-  // .catch((error) => alert("Erreur : " + error));
-  // console.log (response.id);
-// }
+export default async function showIndexPage() {
+  // Récupère les datas des photographes
+  const { photographers } = await getPhotographers();
+  displayData(photographers);
+}
 
 async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
-
+  const photographersSection = document.createElement("div");
+  photographersSection.className = "photographer_section";
+  $page.appendChild(photographersSection);
+// explications des 3 lignes?
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     const $cardWithLink = addLink(photographerModel.pagePath, photographerModel.templateCard);
@@ -33,24 +30,3 @@ async function displayData(photographers) {
   });
 }
 
-async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
-}
-
-function addLink(target, content){
-  const link = document.createElement('a');
-  //ajout de la classe pour modif dans le css
-  link.className = "link_photographers";
-  link.href = target;
-  link.innerHTML = content;
-  console.log(content);
-  return link;
-}
-init();
-
-// haschchange
-window.addEventListener("hashchange", () => {
-  console.log("The hash value has changed");
-});
