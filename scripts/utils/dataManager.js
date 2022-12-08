@@ -24,7 +24,7 @@
 */
 
 let data;
-console.log (data, "acheme")
+
 /**
  * permet d'avoir la liste des photographes
  *
@@ -64,4 +64,14 @@ async function getMediaFromPhotographer(id) {
   return item ? item : [];
 }
 
-export { getPhotographers, getMediaFromPhotographer };
+async function getPhotographer(id) {
+  if (!data) {
+    await getAllData();
+  }
+  const item = data.media.find((item) => item.photographerId === id);
+  return item ? item : [];
+}
+console.log (getPhotographer)
+//
+export { getPhotographers, getMediaFromPhotographer, getPhotographer };
+console.log (data)

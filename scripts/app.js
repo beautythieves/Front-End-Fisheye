@@ -24,7 +24,7 @@ function addLink(target, content) {
 }
 // quand le hasch change, changement de page
 window.addEventListener("hashchange", changePage);
-const $page = document.querySelector("main");
+const $page = document.querySelector("#main");
 // ajout de affichage de page selon url
 function changePage() {
   // slice pour casser le tableau et "enlever le #"
