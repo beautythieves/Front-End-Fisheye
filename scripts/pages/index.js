@@ -1,20 +1,12 @@
 import {addLink, $page} from "../app.js";
 import {photographerFactory} from "../factories/photographer.js";
+import {getPhotographers} from "../utils/dataManager.js";
 
-async function getPhotographers() {
-  try {
-    const response = await fetch("/data/photographers.json");
-    const json = await response.json();
-    console.table(json);
-    return  {photographers : json.photographers};
-  } catch (error) {
-    console.log("Request Failed", error);
-  }
-}
 
 export default async function showIndexPage() {
   // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
+  const photographers  = await getPhotographers();
+  console.log (photographers);
   displayData(photographers);
 }
 
@@ -25,6 +17,7 @@ async function displayData(photographers) {
 // explications des 3 lignes?
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
+    // console.log(photographerModel.pagePath, photographerModel.templateCard,"!!!!");
     const $cardWithLink = addLink(photographerModel.pagePath, photographerModel.templateCard);
     photographersSection.appendChild($cardWithLink);
   });

@@ -6,6 +6,8 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
+    <script src="scripts/app.js" type="module" ></script>
+
   </head>
   <body>
     <header>
@@ -13,7 +15,7 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
     </main>
     <div id="contact_modal">
@@ -32,9 +34,9 @@
 			</div>
 		</div>
     <!--add link to photographerfactory-->
-    <script src="/scripts/factories/photographer.js" defer></script>
+    <script src="/scripts/factories/photographer.js" type= "module" defer></script>
+    <script src="/scripts/utils/contactForm.js" type= "module" defer></script>
 
-    <script src="/scripts/pages/photographerPage.js" defer></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/pages/photographerPage.js" type= "module"  defer></script>
   </body>
 </html>
