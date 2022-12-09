@@ -56,20 +56,21 @@ async function getAllData() {
  *
  * @return  {Array.<Media>}      [return description]
  */
-async function getMediaFromPhotographer(id) {
+ async function getMediaFromPhotographer(photographerId) {
   if (!data) {
     await getAllData();
   }
-  const item = data.media.find((item) => item.id === id);
-  return item ? item : [];
+  const photographersMedia = data.media.filter(
+    (media) => media.photographerId === photographerId
+  );
+  return photographersMedia ?? [];
 }
 
 async function getPhotographer(id) {
   if (!data) {
     await getAllData();
   }
-  const item = data.media.find((item) => item.photographerId === id);
-  return item ? item : [];
+  return data.photographers.find((photographe) => photographe.id === id);
 }
 console.log (getPhotographer)
 //

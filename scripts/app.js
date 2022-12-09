@@ -37,7 +37,7 @@ function changePage() {
     page = page.split("/");
     // explications?
     if (page[0] === "photographer") {
-        photographerPage(page[1]);
+        photographerPage(+page[1]);
     }
   }
 }
