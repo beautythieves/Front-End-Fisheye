@@ -4,11 +4,15 @@ import {
   getPhotographer,
 } from "../utils/dataManager.js";
 import { photographerFactory } from "../factories/photographer.js";
+import { displayModal } from "../utils/contactForm.js";
+
+
 
 export default async function showPhotographerPage(id) {
   const media = await getMediaFromPhotographer(id);
   const photographer = await getPhotographer(id);
   console.log(photographer);
+  console.log(media);
   // const photographer  = {};
   displayPhotographer(photographer, media);
 }
@@ -40,10 +44,11 @@ async function displayPhotographer(photographer, media) {
   const div2 = document.createElement("div");
   div2.className = "contact";
   photographerArticle.appendChild(div2);
-const button = document.createElement("button");
-button.className = "contact_button";
-div2.appendChild(button);
-button.textContent = "Contactez-moi";
+  const button = document.createElement("button");
+  button.className = "contact_button";
+  div2.appendChild(button);
+  button.textContent = "Contactez-moi";
+  button.onclick = displayModal;
 
   const div3 = document.createElement("div");
   div3.className = "photographer_picId";
@@ -51,8 +56,7 @@ button.textContent = "Contactez-moi";
   const picId = document.createElement("img");
   picId.className = "photographer_Id";
   div3.appendChild(picId);
-  picId.src = templateCard.img;
-  
+  picId.src = photographer.portrait;
 }
 
 function encart(photographer) {

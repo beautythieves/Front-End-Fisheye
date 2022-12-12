@@ -7,7 +7,22 @@
     height: 300px;
     margin: 0 100px;
 }
-
+header > h1 {
+    display:none;
+}
+.photographer_article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 100px;
+    padding: 50px 0;
+}
+.photographer_name {
+    font-size: 50px;
+    
+    color: #D3573C;
+}
 .contact_button {
     font-size: 20px;
     font-weight: bold;
