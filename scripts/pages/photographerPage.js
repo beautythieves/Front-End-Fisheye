@@ -2,11 +2,12 @@ import { $page, addLink } from "../app.js";
 import {
   getMediaFromPhotographer,
   getPhotographer,
+  getPhotographers
 } from "../utils/dataManager.js";
 import { photographerFactory } from "../factories/photographer.js";
 import { displayModal } from "../utils/contactForm.js";
 
-
+console.log (photographerFactory)
 
 export default async function showPhotographerPage(id) {
   const media = await getMediaFromPhotographer(id);
@@ -50,22 +51,32 @@ async function displayPhotographer(photographer, media) {
   button.textContent = "Contactez-moi";
   button.onclick = displayModal;
 
+  
   const div3 = document.createElement("div");
   div3.className = "photographer_picId";
   photographerArticle.appendChild(div3);
   const picId = document.createElement("img");
   picId.className = "photographer_Id";
   div3.appendChild(picId);
-  picId.src = photographer.portrait;
+  const picture = `assets/photographers/${portrait}`;
+  //affichage photo phographe?
+  picId.src = picture;
+
+  encart(photographer)
 }
 
-function encart(photographer) {
-  photographer.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
-    const $cardWithLink = addLink(
-      photographerModel.pagePath,
-      photographerModel.templatePagePhotographer
-    );
-    photographerArticle.appendChild($cardWithLink);
-  });
+console.log (getPhotographers)
+console.log (getPhotographer)
+// ci dessous, fonction pour afficher les photos du photographe
+function encart() {
+  const photographerMedia = document.createElement("article");
+  photographerMedia.className = "photographer_media";
+  $page.appendChild(photographerMedia);
+  const div4 = document.createElement("div");
+  div4.className = "photographer_media";
+  photographerMedia.appendChild(div4);
+  const media = document.createElement("img");
+  media.className = "photographer_media";
+  div4.appendChild(media);
+  media.src = photographer.media;
 }

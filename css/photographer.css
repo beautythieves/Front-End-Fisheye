@@ -1,6 +1,4 @@
-#contact_modal {
-    display: none;
-}
+
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -88,4 +86,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+#message {
+    height: 300px;
+    width: 100%
 }
