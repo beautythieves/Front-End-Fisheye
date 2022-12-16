@@ -6,12 +6,7 @@ import photographerPage from "./pages/photographerPage.js";
 // import de showIndexPage renommée indexPage
 import indexPage from "./pages/index.js";
 // ajout import contactform
-// import { displayModal, closeModal } from "./utils/contactForm.js";
 
-// displayModal();
-// // event onclick modal
-// console.log (displayModal)
-// btn.onclick= displayModal() ;
 
 
 function addLink(target, content) {
@@ -29,22 +24,19 @@ const $page = document.querySelector("#main");
 function changePage() {
   // slice pour casser le tableau et "enlever le #"
   let page = window.location.hash.slice(1);
-  $page.innerText=""
+  $page.innerText = "";
   if (page === "") {
     indexPage();
-  }
-  else {
+  } else {
     page = page.split("/");
     // explications?
     if (page[0] === "photographer") {
-        photographerPage(+page[1]);
+      photographerPage(+page[1]);
+
     }
   }
 }
 changePage();
 
-console.log(photographerPage)
-export {
-    addLink,
-    $page
-}
+console.log(photographerPage);
+export { addLink, $page };

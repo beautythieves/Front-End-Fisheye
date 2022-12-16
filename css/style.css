@@ -1,4 +1,3 @@
-@import url("photographer.css");
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -13,7 +12,6 @@ header {
     align-items: center;
     height: 90px;
 }
-
 h1 {
     color: #901C1C;
     margin-right: 100px;
@@ -56,7 +54,14 @@ gardent le même ratio */
    border-radius: 50%;
    max-width: 100%;
    height: auto;
-
+}
+/*sur la page photographer, image id du photographe*/
+.photographer_Id{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
 }
 /* text deco none pour les liens */
 .link_photographers {

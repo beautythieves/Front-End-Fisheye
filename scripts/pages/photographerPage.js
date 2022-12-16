@@ -2,23 +2,27 @@ import { $page, addLink } from "../app.js";
 import {
   getMediaFromPhotographer,
   getPhotographer,
-  getPhotographers
+  getPhotographers,
+  getAllData
 } from "../utils/dataManager.js";
-import { photographerFactory } from "../factories/photographer.js";
+import { mediaFactory} from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 
-console.log (photographerFactory)
+// 
+console.log (mediaFactory.templateMedia)
 
 export default async function showPhotographerPage(id) {
   const media = await getMediaFromPhotographer(id);
   const photographer = await getPhotographer(id);
-  console.log(photographer);
-  console.log(media);
+
   // const photographer  = {};
   displayPhotographer(photographer, media);
 }
 
 async function displayPhotographer(photographer, media) {
+
+  //hide header h1 "nos photographes"
+  document.querySelector("h1").style.display = "none";
   // Display the data on the page
   const photographerArticle = document.createElement("article");
   photographerArticle.className = "photographer_article";
@@ -58,25 +62,52 @@ async function displayPhotographer(photographer, media) {
   const picId = document.createElement("img");
   picId.className = "photographer_Id";
   div3.appendChild(picId);
+  picId.src= `assets/photographers/${photographer.portrait}`;
+  /*
   const picture = `assets/photographers/${portrait}`;
   //affichage photo phographe?
-  picId.src = picture;
-
-  encart(photographer)
+  picId.src = picture;*/
+  console.log (media)
+  const mediaParse = JSON.stringify(media);
+console.log(mediaParse)
+  displayMedia(media)
 }
 
 console.log (getPhotographers)
 console.log (getPhotographer)
-// ci dessous, fonction pour afficher les photos du photographe
-function encart() {
-  const photographerMedia = document.createElement("article");
-  photographerMedia.className = "photographer_media";
-  $page.appendChild(photographerMedia);
-  const div4 = document.createElement("div");
-  div4.className = "photographer_media";
-  photographerMedia.appendChild(div4);
-  const media = document.createElement("img");
-  media.className = "photographer_media";
-  div4.appendChild(media);
-  media.src = photographer.media;
+console.log (getMediaFromPhotographer)
+console.log(typeof media)
+
+function displayMedia (visuals){
+  const mediaSection = document.createElement("div");
+  mediaSection.className = "photographer_media";
+  $page.appendChild(mediaSection);
+  visuals.forEach((media) => {  
+    const mediaModel = mediaFactory(media);
+    const mediaTemplate = mediaModel.templateMedia;
+    mediaSection.appendChild(mediaTemplate);
+    
+  });
 }
+// /*
+// // ci dessous, fonction pour afficher les photos du photographe
+// function encart() {
+//   const photographerMedia = document.createElement("article");
+//   photographerMedia.className = "photographer_media";
+//   $page.appendChild(photographerMedia);
+//   const div4 = document.createElement("div");
+//   div4.className = "photographer_media";
+//   photographerMedia.appendChild(div4);
+//   const mediaShow = document.createElement("img");
+//   mediaShow.className = "photographer_media";
+//   div4.appendChild(mediaShow);
+//   mediaShow.src = media;
+//   /*
+//   media.className = "photographer_media";
+//   div4.appendChild(media);
+//   media.src = photographer.media;
+//   */
+// }
+// */
+
+

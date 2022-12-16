@@ -56,7 +56,7 @@ async function getAllData() {
  *
  * @return  {Array.<Media>}      [return description]
  */
- async function getMediaFromPhotographer(photographerId) {
+async function getMediaFromPhotographer(photographerId) {
   if (!data) {
     await getAllData();
   }
@@ -72,7 +72,7 @@ async function getPhotographer(id) {
   }
   return data.photographers.find((photographe) => photographe.id === id);
 }
-console.log (getPhotographer)
+console.log(getPhotographer);
 //
-export { getPhotographers, getMediaFromPhotographer, getPhotographer };
-console.log (data)
+export { getAllData, getPhotographers, getMediaFromPhotographer, getPhotographer };
+console.log(data);
