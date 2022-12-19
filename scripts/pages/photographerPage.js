@@ -63,6 +63,7 @@ async function displayPhotographer(photographer, media) {
   picId.className = "photographer_Id";
   div3.appendChild(picId);
   picId.src= `assets/photographers/${photographer.portrait}`;
+  picId.alt="portrait de ${photographer.name}";
   /*
   const picture = `assets/photographers/${portrait}`;
   //affichage photo phographe?

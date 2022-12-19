@@ -6,6 +6,7 @@ export function displayModal() {
     const mainDivModal = document.createElement("div");
     mainDivModal.id = "contact_modal";
     mainDivModal.setAttribute("role", "dialog");
+    mainDivModal.setAttribute("aria-modal", "true");
     document.body.appendChild(mainDivModal);
 
     const divModal= document.createElement("div");
@@ -88,6 +89,7 @@ const labelMessageFormModal = document.createElement("label");
 
     // accesibilité.cache le reste du document
     document.querySelector("#main").setAttribute("aria-hidden", "true");
+    document.querySelector("#header").setAttribute("aria-hidden", "true");
     };
 
 	/*!!! manque le focus sur la modale 
