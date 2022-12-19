@@ -71,7 +71,7 @@ async function displayPhotographer(photographer, media) {
   console.log (media)
   const mediaParse = JSON.stringify(media);
 console.log(mediaParse)
-  displayMedia(media)
+  //displayMedia(media)
 }
 
 console.log (getPhotographers)
