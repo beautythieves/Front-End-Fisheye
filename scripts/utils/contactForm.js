@@ -7,6 +7,7 @@ export function displayModal() {
     mainDivModal.id = "contact_modal";
     mainDivModal.setAttribute("role", "dialog");
     mainDivModal.setAttribute("aria-modal", "true");
+    mainDivModal.setAttribute("aria-labelledby", "contact_modal_title");
     document.body.appendChild(mainDivModal);
 
     const divModal= document.createElement("div");
@@ -16,11 +17,17 @@ export function displayModal() {
     divModal.appendChild(headerModal);
     const h2Modal = document.createElement("h2");
     h2Modal.textContent = "Contactez-moi";
+    h2Modal.setAttribute("id", "contact_modal_title");
     headerModal.appendChild(h2Modal);
     const imgModal = document.createElement("img");
     imgModal.src = "assets/icons/close.svg";
+    imgModal.alt = "fermer la modale de contact";
+    imgModal.setAttribute("role", "button");
+    imgModal.setAttribute("aria-label", "fermer la modale de contact");
+    imgModal.setAttribute("id", "close_modal");
     imgModal.onclick = closeModal;
     headerModal.appendChild(imgModal);
+
     const formModal = document.createElement("form");
     divModal.appendChild(formModal);
     const divFormModal = document.createElement("div");
@@ -89,11 +96,15 @@ const labelMessageFormModal = document.createElement("label");
 
     // accesibilité.cache le reste du document
     document.querySelector("#main").setAttribute("aria-hidden", "true");
-    document.querySelector("#header").setAttribute("aria-hidden", "true");
     };
-
-	/*!!! manque le focus sur la modale 
-    et la fermeture avec clavier*/
+    // fermeture de la modale avec la touche escape
+    document.addEventListener("keyup", function (e) { 
+        if (e.key === "Escape") {
+            closeModal();
+        } else
+        return;
+    });
+	/*!!! manque le focus sur la modale */
 
 
 function closeModal() {
