@@ -79,17 +79,19 @@ console.log (getPhotographer)
 console.log (getMediaFromPhotographer)
 console.log(typeof media)
 
-function displayMedia (visuals){
-  const mediaSection = document.createElement("div");
-  mediaSection.className = "photographer_media";
-  $page.appendChild(mediaSection);
-  visuals.forEach((media) => {  
-    const mediaModel = mediaFactory(media);
-    const mediaTemplate = mediaModel.templateMedia;
-    mediaSection.appendChild(mediaTemplate);
+// function displayMedia (visuals){
+//   const mediaSection = document.createElement("div");
+//   mediaSection.className = "photographer_media";
+//   $page.appendChild(mediaSection);
+//   visuals.forEach((media) => {  
+//     const mediaModel = mediaFactory(media);
+//     const mediaTemplate = mediaModel.templateMedia;
+//     mediaSection.appendChild(mediaTemplate);
     
-  });
-}
+//   });
+// }
+
+
 // /*
 // // ci dessous, fonction pour afficher les photos du photographe
 // function encart() {
