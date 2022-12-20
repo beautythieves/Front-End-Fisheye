@@ -29,7 +29,7 @@
     font-size: 20px;
     color: #BBBBBB;
 }
-.contact_button {
+.contact_button, .send_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -98,4 +98,8 @@ form input {
 #message {
     height: 300px;
     width: 100%
+}
+*:focus {
+    outline: none;
+    box-shadow: 0 0 30px #f10303;
 }

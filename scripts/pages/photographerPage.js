@@ -22,7 +22,22 @@ export default async function showPhotographerPage(id) {
 async function displayPhotographer(photographer, media) {
 
   //hide header h1 "nos photographes"
-  document.querySelector("h1").style.display = "none";
+  document.querySelector("#h1").style.display = "none";
+
+  // add link to index page on the logo Fisheye in the header
+  const logo = document.querySelector(".logo");
+  logo.onclick = function () {
+    window.location.hash = "";
+    logo.href = "#";
+  logo.setAttribute = ("aria-label", "Accueil");
+  logo.setAttribute = ("title", "Accueil");
+  logo.setAttribute = ("alt", "page d'Accueil");
+  logo.addEventListener("mouseover", function () {
+    logo.style.cursor = "pointer";
+  });
+    
+  };
+  
   // Display the data on the page
   const photographerArticle = document.createElement("article");
   photographerArticle.className = "photographer_article";
