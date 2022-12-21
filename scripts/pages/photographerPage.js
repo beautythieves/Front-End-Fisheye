@@ -1,6 +1,6 @@
 import { $page, addLink } from "../app.js";
 import {
-  getMediaFromPhotographer,
+  filteredMedia,
   getPhotographer,
   getPhotographers,
   getAllData
@@ -12,7 +12,7 @@ import { displayModal } from "../utils/contactForm.js";
 console.log (mediaFactory.templateMedia)
 
 export default async function showPhotographerPage(id) {
-  const media = await getMediaFromPhotographer(id);
+  const media = await filteredMedia(id);
   const photographer = await getPhotographer(id);
 
   // const photographer  = {};
@@ -83,15 +83,31 @@ async function displayPhotographer(photographer, media) {
   const picture = `assets/photographers/${portrait}`;
   //affichage photo phographe?
   picId.src = picture;*/
-  console.log (media)
-  const mediaParse = JSON.stringify(media);
-console.log(mediaParse)
+  console.log (media);
+
+  const div4 = document.createElement("div");
+  div4.innerHTML = /*html*/ `
+    <div class= "article_media_sortBy">
+      <input class="article_media_sortBy_input" type="checkbox" id="sortBy" name="sortBy" value="sortBy">
+      <label class="article_media_sortBy_label" for="sortBy">Trier par popularité</label>
+    </div>`;
+  $page.appendChild(div4);
+
+  const div5 = document.createElement("div");
+  let content = "";
+  for (const mediaCard of media ){
+    content += mediaFactory(mediaCard, photographer.name);
+  }
+  div5.innerHTML = content;
+  $page.appendChild(div5);
+//   const mediaParse = JSON.stringify(media);
+// console.log(mediaParse)
   //displayMedia(media)
 }
 
 console.log (getPhotographers)
 console.log (getPhotographer)
-console.log (getMediaFromPhotographer)
+// console.log (getMediaFromPhotographer)
 console.log(typeof media)
 
 // function displayMedia (visuals){

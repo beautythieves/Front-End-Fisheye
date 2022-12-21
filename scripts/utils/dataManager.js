@@ -72,7 +72,30 @@ async function getPhotographer(id) {
   }
   return data.photographers.find((photographe) => photographe.id === id);
 }
+
+/**
+ * [async description]
+ *
+ * @param   {Number}  photographerId
+ * @param   {"date" | "popularité" | "titre"}  [filter]  
+ *
+ * @return   {Array.<Media>}
+ */
+async function filteredMedia(photographerId, filter) {
+  const data = await getMediaFromPhotographer(photographerId);
+  switch (filter) {
+    case "date":
+      return data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    case "popularité":
+      return data.sort((a, b) => b.likes - a.likes); // trier par popularité
+    case "titre":
+      return data.sort((a, b) => a.title.localeCompare(b.title));
+    
+    default : 
+      return data;
+  }
+}
 console.log(getPhotographer);
 //
-export { getAllData, getPhotographers, getMediaFromPhotographer, getPhotographer };
+export { getAllData, getPhotographers, filteredMedia, getPhotographer };
 console.log(data);
