@@ -86,6 +86,7 @@ async function displayPhotographer(photographer, media) {
   console.log (media);
 
   const div4 = document.createElement("div");
+  div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
     <div class= "article_media_sortBy">
       <input class="article_media_sortBy_input" type="checkbox" id="sortBy" name="sortBy" value="sortBy">
@@ -94,6 +95,7 @@ async function displayPhotographer(photographer, media) {
   $page.appendChild(div4);
 
   const div5 = document.createElement("div");
+  div5.className = "photographer_media";
   let content = "";
   for (const mediaCard of media ){
     content += mediaFactory(mediaCard, photographer.name);
