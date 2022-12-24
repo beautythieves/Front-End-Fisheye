@@ -1,7 +1,6 @@
 import {addLink, $page} from "../app.js";
 import {photographerFactory} from "../factories/photographer.js";
 import {getPhotographers} from "../utils/dataManager.js";
-
 /**
  * @param  {} {constphotographers=awaitgetPhotographers(
  * @param  {} ;displayData(photographers

@@ -2,7 +2,6 @@
 // photograherPage (possible car default)
 
 import photographerPage from "./pages/photographerPage.js";
-
 // import de showIndexPage renommée indexPage
 import indexPage from "./pages/index.js";
 // ajout import contactform

@@ -3,13 +3,14 @@ import {
   filteredMedia,
   getPhotographer,
   getPhotographers,
-  getAllData
+  getAllData,
 } from "../utils/dataManager.js";
-import { mediaFactory} from "../factories/media.js";
+import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
+import {closeLightbox} from "../utils/lightbox.js";
 
-// 
-console.log (mediaFactory.templateMedia)
+//
+console.log(mediaFactory.templateMedia);
 
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
@@ -20,7 +21,6 @@ export default async function showPhotographerPage(id) {
 }
 
 async function displayPhotographer(photographer, media) {
-
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
 
@@ -29,15 +29,14 @@ async function displayPhotographer(photographer, media) {
   logo.onclick = function () {
     window.location.hash = "";
     logo.href = "#";
-  logo.setAttribute = ("aria-label", "Accueil");
-  logo.setAttribute = ("title", "Accueil");
-  logo.setAttribute = ("alt", "page d'Accueil");
-  logo.addEventListener("mouseover", function () {
-    logo.style.cursor = "pointer";
-  });
-    
+    logo.setAttribute = ("aria-label", "Accueil");
+    logo.setAttribute = ("title", "Accueil");
+    logo.setAttribute = ("alt", "page d'Accueil");
+    logo.addEventListener("mouseover", function () {
+      logo.style.cursor = "pointer";
+    });
   };
-  
+
   // Display the data on the page
   const photographerArticle = document.createElement("article");
   photographerArticle.className = "photographer_article";
@@ -70,80 +69,62 @@ async function displayPhotographer(photographer, media) {
   button.textContent = "Contactez-moi";
   button.onclick = displayModal;
 
-  
   const div3 = document.createElement("div");
   div3.className = "photographer_picId";
   photographerArticle.appendChild(div3);
   const picId = document.createElement("img");
   picId.className = "photographer_Id";
   div3.appendChild(picId);
-  picId.src= `assets/photographers/${photographer.portrait}`;
-  picId.alt="portrait de ${photographer.name}";
+  picId.src = `assets/photographers/${photographer.portrait}`;
+  picId.alt = "portrait de ${photographer.name}";
   /*
   const picture = `assets/photographers/${portrait}`;
   //affichage photo phographe?
   picId.src = picture;*/
-  console.log (media);
+  console.log(media);
+
+//zone de filtre images
 
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
-    <div class= "article_media_sortBy">
-      <input class="article_media_sortBy_input" type="checkbox" id="sortBy" name="sortBy" value="sortBy">
-      <label class="article_media_sortBy_label" for="sortBy">Trier par popularité</label>
-    </div>`;
+    <section class= "article_media_sortBy">
+    <div id= "title_trier_par">
+      <h3 id="trier_par">Trier par</h3>
+    </div>
+    <div class="dropdownMenu">
+      <div class="filter-select open">
+        <a href="#" role="button" class="filter-select__trigger" aria-controls="filter-options" aria-haspopup="listbox" aria-label="Trier par" aria-expanded="true">
+            <span>Popularité</span>
+            <div class="arrow"></div>
+        </a>
+        <div class="filter-options-container" role="listbox" id="filter-options">
+            <a href="#" class="filter-option selected" data-value="popularite" aria-selected="true" aria-label="Trier par popularité" role="option">Popularité</a>
+            <a href="#" class="filter-option" data-value="date" aria-selected="true" aria-label="Trier par date" role="option">Date</a>
+            <a href="#" class="filter-option" data-value="titre" aria-selected="true" aria-label="Trier par titre" role="option">Titre</a>
+        </div>
+    </div>
+</div>
+          </section>`;
   $page.appendChild(div4);
 
   const div5 = document.createElement("div");
   div5.className = "photographer_media";
   let content = "";
-  for (const mediaCard of media ){
+  for (const mediaCard of media) {
     content += mediaFactory(mediaCard, photographer.name);
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
-//   const mediaParse = JSON.stringify(media);
-// console.log(mediaParse)
-  //displayMedia(media)
+  // let mediacards =document.querySelectorAll(".article_media_container_card")
+  // mediacards.forEach((card) => {
+  //   card.addEventListener("click", displayLightbox);
+  // });
+  
+
+  //lightBox
+  
+
 }
 
-console.log (getPhotographers)
-console.log (getPhotographer)
-// console.log (getMediaFromPhotographer)
-console.log(typeof media)
-
-// function displayMedia (visuals){
-//   const mediaSection = document.createElement("div");
-//   mediaSection.className = "photographer_media";
-//   $page.appendChild(mediaSection);
-//   visuals.forEach((media) => {  
-//     const mediaModel = mediaFactory(media);
-//     const mediaTemplate = mediaModel.templateMedia;
-//     mediaSection.appendChild(mediaTemplate);
-    
-//   });
-// }
-
-
-// /*
-// // ci dessous, fonction pour afficher les photos du photographe
-// function encart() {
-//   const photographerMedia = document.createElement("article");
-//   photographerMedia.className = "photographer_media";
-//   $page.appendChild(photographerMedia);
-//   const div4 = document.createElement("div");
-//   div4.className = "photographer_media";
-//   photographerMedia.appendChild(div4);
-//   const mediaShow = document.createElement("img");
-//   mediaShow.className = "photographer_media";
-//   div4.appendChild(mediaShow);
-//   mediaShow.src = media;
-//   /*
-//   media.className = "photographer_media";
-//   div4.appendChild(media);
-//   media.src = photographer.media;
-//   */
-// }
-// */
-
-
+closeLightbox

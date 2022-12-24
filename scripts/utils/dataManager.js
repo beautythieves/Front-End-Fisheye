@@ -24,7 +24,16 @@
 */
 
 let data;
+/**
+ * @type {"date"| "title"| "likes"}
+ */
+let activeFilter = "date";
 
+const serverAddress = "http://localhost:5500";
+
+function setActiveFilter(filter) {
+  activeFilter = filter;
+}
 /**
  * permet d'avoir la liste des photographes
  *
@@ -77,13 +86,13 @@ async function getPhotographer(id) {
  * [async description]
  *
  * @param   {Number}  photographerId
- * @param   {"date" | "popularité" | "titre"}  [filter]  
+ * 
  *
  * @return   {Array.<Media>}
  */
-async function filteredMedia(photographerId, filter) {
+async function filteredMedia(photographerId) {
   const data = await getMediaFromPhotographer(photographerId);
-  switch (filter) {
+  switch (activeFilter) {
     case "date":
       return data.sort((a, b) => new Date(b.date) - new Date(a.date));
     case "popularité":
@@ -96,6 +105,6 @@ async function filteredMedia(photographerId, filter) {
   }
 }
 console.log(getPhotographer);
-//
-export { getAllData, getPhotographers, filteredMedia, getPhotographer };
+
+export {serverAddress, getAllData, getPhotographers, filteredMedia, getPhotographer };
 console.log(data);
