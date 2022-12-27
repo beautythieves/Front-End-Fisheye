@@ -9,6 +9,7 @@ import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import {closeLightbox} from "../utils/lightbox.js";
 
+// 
 //
 console.log(mediaFactory.templateMedia);
 
@@ -127,4 +128,3 @@ async function displayPhotographer(photographer, media) {
 
 }
 
-closeLightbox

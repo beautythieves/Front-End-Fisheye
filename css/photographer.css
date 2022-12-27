@@ -189,7 +189,18 @@ form input {
     z-index: 100;
 }
 
+.lightbox__media__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
+.lightbox__media__container  img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    margin: auto;
+}
 .lightbox__next {
     position: absolute;
     top: 50%;
@@ -215,6 +226,12 @@ form input {
     font-size: 50px;
     color: rgb(151, 12, 12);
     cursor: pointer; 
+}
+
+.lightbox__prev, .lightbox__close, .lightbox__next : hover {
+    font-size: 50px;
+    color: rgb(151, 12, 12);
+    cursor: pointer;
 }
 .fa-times, .fa-chevron-right, .fa-chevron-left {
     font-size: 50px;
