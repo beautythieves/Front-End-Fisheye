@@ -12,7 +12,8 @@ const templateMedia = /*html*/ `
       ${image ? templateImage(picture, title) : templateVideo(picture)}
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
-        <h3 class= "article_media_container_card_likes">${likes} <i class="far fa-heart"></i></h3>
+        <h3 class= "article_media_container_card_likes"  onclick="incrementLike(this)">${likes} </h3>
+      
       </div>
     </div>
   </div>
@@ -33,10 +34,23 @@ function templateVideo(videoName){
 function templateImage(picture, title){
   return /*html*/ `
   <img src="${picture}" alt="photo de ${title}"  class="article_media_container_card_img">
+  
   `;
 }
 
+window.incrementLike = function (target){
+  const likes = parseInt(target.innerText);
 
+  if (target.classList.contains("isLiked")){
+    target.innerText = likes - 1;
+    target.classList.remove("isLiked");
+  } else {
+    target.innerText = likes + 1;
+    target.classList.add("isLiked");
+  }
+}
 
 
 export {mediaFactory, templateImage}
+
+

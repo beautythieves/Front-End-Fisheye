@@ -117,6 +117,23 @@ async function displayPhotographer(photographer, media) {
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
+
+//incrementation des likes A REVOIR
+  const iconsLikes = document.getElementsByClassName(".fa-heart");
+  console.log(iconsLikes)
+  let likes = media.map((media) => media.likes);
+  console.log(likes);
+  
+  for (let i = 0; i < iconsLikes.length; i++) {
+    iconsLikes[i].addEventListener("click", function () {
+      likes[i]++;
+      console.log(likes);
+     
+    });
+  }
+  
+
+
   // let mediacards =document.querySelectorAll(".article_media_container_card")
   // mediacards.forEach((card) => {
   //   card.addEventListener("click", displayLightbox);
