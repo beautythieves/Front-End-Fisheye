@@ -68,7 +68,7 @@ function mediaInModal() {
     return media.image ? templateImage(src, altText) : "video";
 }
 
-function templatePict(src, altText) {
+function templateImg(src, altText) {
     return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
 }
 
