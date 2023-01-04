@@ -7,9 +7,11 @@ import {
 } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
-import {closeLightbox} from "../utils/lightbox.js";
+import exposeInWindow from "../utils/lightbox.js";
 
-// 
+exposeInWindow([displayLightbox, closeLightbox, nextmedia, prevmedia]);
+
+//
 //
 console.log(mediaFactory.templateMedia);
 
@@ -84,7 +86,7 @@ async function displayPhotographer(photographer, media) {
   picId.src = picture;*/
   console.log(media);
 
-//zone de filtre images
+  //zone de filtre images
 
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
@@ -118,30 +120,23 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-//incrementation des likes A REVOIR
+  //incrementation des likes A REVOIR
   const iconsLikes = document.getElementsByClassName(".fa-heart");
-  console.log(iconsLikes)
+  console.log(iconsLikes);
   let likes = media.map((media) => media.likes);
   console.log(likes);
-  
+
   for (let i = 0; i < iconsLikes.length; i++) {
     iconsLikes[i].addEventListener("click", function () {
       likes[i]++;
       console.log(likes);
-     
     });
   }
-  
-
 
   // let mediacards =document.querySelectorAll(".article_media_container_card")
   // mediacards.forEach((card) => {
   //   card.addEventListener("click", displayLightbox);
   // });
-  
 
   //lightBox
-  
-
 }
-

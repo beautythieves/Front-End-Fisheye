@@ -2,67 +2,87 @@ import { $page } from "../app.js";
 import { templateImage } from "../factories/media.js";
 import { filteredMedia, serverAddress } from "../utils/dataManager.js";
 console.log(templateImage);
-window.displayLightbox = async function (photographerId, id, photographerName) {
-  const allmedias = await filteredMedia(photographerId);
-  console.log(allmedias);
-  let altText, src, type;
-  let i;
-  for (i = 0; i < allmedias.length; i++) {
-    const media = allmedias[i];
-    if (media.id === id) {
-      console.log(media);
-      src = media.image || media.video;
-      altText = media.title;
-      type = media.image ? "image" : "video";
-      break;
+let $lightbox, allmedias, currentMediaIndex, $media;
+async function displayLightbox(photographerId, id, photographerName) {
+    allmedias = await filteredMedia(photographerId);
+    let altText, src, type;
+    let i;
+    for (i = 0; i < allmedias.length; i++) {
+        const media = allmedias[i];
+        if (media.id === id) {
+            currentMediaIndex = i;
+            src = media.image || media.video;
+            altText = media.title;
+            type = media.image ? "image" : "video";
+            break;
+        }
     }
-  }
 
-  const lightbox = document.createElement("section");
-  let imgSource = document.getElementsByClassName(
-    "article_media_container_card_img"
-  );
-  console.log(imgSource);
-  lightbox.className = "lightbox";
-  lightbox.innerHTML =
-    /*html*/
-    `<div class="lightbox__container">                
-        <button class="lightbox__close" >X</button>
-        <button class="lightbox__next"><i class="fas fa-chevron-right"></i></button>
+    $lightbox = document.createElement("section");
+    const imgSource = document.getElementsByClassName(
+        "article_media_container_card_img"
+    );
+    $lightbox.className = "lightbox";
+    $lightbox.innerHTML =
+        /*html*/
+        `<div class="lightbox__container">                
+        <button class="lightbox__close" onclick="closeModalLightbox()">X</button>
+        <button class="lightbox__next" onclick="nextMedia()"><i class="fas fa-chevron-right"></i></button>
         <button class="lightbox__prev"><i class="fas fa-chevron-left"></i></button>
-          <div class="lightbox__media__container">
-            <img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">
+          <div class="lightbox__media__container" id="mediaInModal">
+            ${mediaInModal()}
           </div> 
     </div> `;
-  $page.appendChild(lightbox);
-
-  console.log(lightbox);
-
-  /*fermeture de la lightbox*/
-
-  lightbox.addEventListener("click", closeModalLightbox);
+    $page.appendChild(lightbox);
 };
 function closeModalLightbox() {
-  let closelightbox = document.querySelector("section");
-
-  closelightbox.remove();
+    lightbox.parentNode.removeChild(lightbox);
 }
+
+
 /* fermeture lightbox avec la touche escape*/
 document.addEventListener("keyup", function (e) {
     if (e.key === "Escape") {
-      closeModalLightbox();
+        closeModalLightbox();
     } else return;
-  });
+});
 
-// fonction pour fermer la lightbox
-// ne amrche pas! manque le bouton fermer
-// et la touche ecscape
-///GROS PB ICI CAR SI J'EFFACE LA FONCTION CLOSEMODALLIGHTBOX,
-//CONFLIT AVEC FICHIER INDEX.JS
-console.log(closeLightbox);
+function nextmedia() {
+    console.log("next");
+    currentMediaIndex++;
+    if (currentMediaIndex >= allmedias.length) {
+        currentMediaIndex = 0;
+    }
 
-export function closeLightbox() {
-  const $lightbox = document.querySelector(".lightbox");
-
-  $lightbox.remove();
 }
+
+function mediaInModal() {
+    const media = allmedias[currentMediaIndex];
+    const src = media.image || media.video;
+    const altText = media.title;
+    return media.image ? templateImage(src, altText) : "video";
+}
+
+function templateImg(src, altText) {
+    return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
+}
+
+function updateMedia() {
+    if (!$media) $media = document.getElementById("mediaInModal");
+    $media.innerHTML = mediaInModal();
+}
+
+
+/**
+ * [exposeInWindow description]
+ *
+ * @param   {Array.<String>}  methodsToExpose  [methodsToExpose description]
+ *
+ * @return  {void}                   [return description]
+ */
+function exposeInWindow(methodsToExpose) {
+    for (const method of methodsToExpose) {
+        window[method] = this[method].bind(this);
+    }
+}
+export default exposeInWindow;
