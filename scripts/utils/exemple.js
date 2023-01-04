@@ -3,13 +3,8 @@ import { templateImage } from "../factories/media.js";
 import { filteredMedia, serverAddress } from "../utils/dataManager.js";
 console.log(templateImage);
 let $lightbox, allmedias, currentMediaIndex, $media;
-async function displayLightBox(photographerId, id, photographerName) {
-    try {
-        allmedias = await filteredMedia(photographerId);
-      } catch (error) {
-        console.error(error);
-        // Handle the error here
-      }
+async function displayLightbox(photographerId, id, photographerName) {
+    allmedias = await filteredMedia(photographerId);
     let altText, src, type;
     let i;
     for (i = 0; i < allmedias.length; i++) {
@@ -38,7 +33,7 @@ async function displayLightBox(photographerId, id, photographerName) {
             ${mediaInModal()}
           </div> 
     </div> `;
-    $page.appendChild($lightbox);
+    $page.appendChild(lightbox);
 };
 function closeModalLightbox() {
     $lightbox.parentNode.removeChild($lightbox);
@@ -52,7 +47,7 @@ document.addEventListener("keyup", function (e) {
     } else return;
 });
 
-function nextMedia() {
+function nextmedia() {
     console.log("next");
     currentMediaIndex++;
     if (currentMediaIndex >= allmedias.length) {
@@ -63,43 +58,4 @@ function nextMedia() {
 
 function mediaInModal() {
     const media = allmedias[currentMediaIndex];
-    const src = media.image || media.video;
-    const altText = media.title;
-    return media.image ? templateImage(src, altText) : "video";
-}
-
-function templatePict(src, altText) {
-    return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
-}
-
-function updateMedia() {
-    if (!$media) $media = document.getElementById("mediaInModal");
-    $media.innerHTML = mediaInModal();
-}
-
-
-/**
- * [exposeInWindow description]
- *
- * @param   {Array.<String>}  methodsToExpose  [methodsToExpose description]
- *
- * @return  {void}                   [return description]
- */
- function exposeInWindow(methodsToExpose) {
-    for (const method of methodsToExpose) {
-      // Make sure the method is a function before attempting to bind it
-      if (typeof this[method] === 'function') {
-        window[method] = this[method].bind(this);
-      }
-    }
-  }
-
-// Bind the exposeInWindow function to the correct object
-const boundExposeInWindow = exposeInWindow.bind(this);
-
-// Call the bound function and pass in the array of methods to expose
-boundExposeInWindow(['displayLightBox', 'closeModalLightbox', 'nextMedia']);
-
-export default boundExposeInWindow;
-
-
+    const src =
