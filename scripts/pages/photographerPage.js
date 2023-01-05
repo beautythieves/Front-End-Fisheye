@@ -7,13 +7,14 @@ import {
 } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
-import exposeInWindow from "../utils/lightbox.js";
+import { displayLightBox } from "../utils/lightbox.js";
 
-exposeInWindow([displayLightbox, closeLightbox, nextmedia, prevmedia]);
+// import exposeInWindow from "../utils/lightbox.js";
+
+// exposeInWindow([displayLightbox, closeLightbox, nextmedia, prevmedia]);
 
 //
 //
-console.log(mediaFactory.templateMedia);
 
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
@@ -80,11 +81,7 @@ async function displayPhotographer(photographer, media) {
   div3.appendChild(picId);
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
-  /*
-  const picture = `assets/photographers/${portrait}`;
-  //affichage photo phographe?
-  picId.src = picture;*/
-  console.log(media);
+  
 
   //zone de filtre images
 
@@ -122,9 +119,7 @@ async function displayPhotographer(photographer, media) {
 
   //incrementation des likes A REVOIR
   const iconsLikes = document.getElementsByClassName(".fa-heart");
-  console.log(iconsLikes);
   let likes = media.map((media) => media.likes);
-  console.log(likes);
 
   for (let i = 0; i < iconsLikes.length; i++) {
     iconsLikes[i].addEventListener("click", function () {
@@ -132,11 +127,4 @@ async function displayPhotographer(photographer, media) {
       console.log(likes);
     });
   }
-
-  // let mediacards =document.querySelectorAll(".article_media_container_card")
-  // mediacards.forEach((card) => {
-  //   card.addEventListener("click", displayLightbox);
-  // });
-
-  //lightBox
 }

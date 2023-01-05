@@ -33,7 +33,7 @@ async function displayLightBox(photographerId, id, photographerName) {
         `<div class="lightbox__container">                
         <button class="lightbox__close" onclick="closeModalLightbox()">X</button>
         <button class="lightbox__next" onclick="nextMedia()"><i class="fas fa-chevron-right"></i></button>
-        <button class="lightbox__prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox__prev" onclick ="><i class="fas fa-chevron-left"></i></button>
           <div class="lightbox__media__container" id="mediaInModal">
             ${mediaInModal()}
           </div> 
@@ -65,7 +65,7 @@ function mediaInModal() {
     const media = allmedias[currentMediaIndex];
     const src = media.image || media.video;
     const altText = media.title;
-    return media.image ? templateImage(src, altText) : "video";
+    return media.image ? templateImg(src, altText) : "video";
 }
 
 function templateImg(src, altText) {
@@ -77,6 +77,8 @@ function updateMedia() {
     $media.innerHTML = mediaInModal();
 }
 
+export { displayLightBox, closeModalLightbox, nextMedia };
+
 
 /**
  * [exposeInWindow description]
@@ -85,6 +87,10 @@ function updateMedia() {
  *
  * @return  {void}                   [return description]
  */
+
+
+/*
+
  function exposeInWindow(methodsToExpose) {
     for (const method of methodsToExpose) {
       // Make sure the method is a function before attempting to bind it
@@ -103,3 +109,4 @@ boundExposeInWindow(['displayLightBox', 'closeModalLightbox', 'nextMedia']);
 export default boundExposeInWindow;
 
 
+*/

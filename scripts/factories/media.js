@@ -6,7 +6,7 @@ function mediaFactory(data, photographerName){
 const { image, video, likes, date, price, id, photographerId, title } = data;
 const picture = `/assets/media/${photographerName}/${image||video}`;
 const templateMedia = /*html*/ `
-<article class="article_media" title= "photographie de ${title}" onclick="displayLightbox(${photographerId}, ${id}, '${photographerName}')">
+<article class="article_media" title= "photographie de ${title}" onclick="displayLightBox(${photographerId}, ${id}, '${photographerName}')">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
       ${image ? templateImage(picture, title) : templateVideo(picture)}
