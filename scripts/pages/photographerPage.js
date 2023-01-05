@@ -85,27 +85,20 @@ async function displayPhotographer(photographer, media) {
 
   //zone de filtre images
 
+  // fleche bas : <i class="fas fa-chevron-down"></i>
+  // fleche haut: <i class="fas fa-chevron-up"></i>
+
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
     <section class= "article_media_sortBy">
-    <div id= "title_trier_par">
-      <h3 id="trier_par">Trier par</h3>
-    </div>
-    <div class="dropdownMenu">
-      <div class="filter-select open">
-        <a href="#" role="button" class="filter-select__trigger" aria-controls="filter-options" aria-haspopup="listbox" aria-label="Trier par" aria-expanded="true">
-            <span>Popularité</span>
-            <div class="arrow"></div>
-        </a>
-        <div class="filter-options-container" role="listbox" id="filter-options">
-            <a href="#" class="filter-option selected" data-value="popularite" aria-selected="true" aria-label="Trier par popularité" role="option">Popularité</a>
-            <a href="#" class="filter-option" data-value="date" aria-selected="true" aria-label="Trier par date" role="option">Date</a>
-            <a href="#" class="filter-option" data-value="titre" aria-selected="true" aria-label="Trier par titre" role="option">Titre</a>
-        </div>
-    </div>
-</div>
-          </section>`;
+       <label id ="trier_par">Trier par</label>
+       <select id="sortBy">
+         <option value="likes">Popularité</option>
+         <option value="date">Date</option>
+         <option value="title">Titre</option>
+      </select>
+    </section>`;
   $page.appendChild(div4);
 
   const div5 = document.createElement("div");
