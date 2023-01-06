@@ -115,11 +115,8 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-  console.log(media);
-  /*
-il faut prendre le tableau media et le trier par date, titre ou likes
 
-*/
+// trier les images par date, titre ou note
   function sortMedia() {
     const select = document.querySelector("#sortBy");
     select.addEventListener("change", function () {
