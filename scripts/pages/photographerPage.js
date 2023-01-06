@@ -81,7 +81,6 @@ async function displayPhotographer(photographer, media) {
   div3.appendChild(picId);
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
-  
 
   //zone de filtre images
 
@@ -91,16 +90,21 @@ async function displayPhotographer(photographer, media) {
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
-    <section class= "article_media_sortBy">
-       <label id ="trier_par">Trier par</label>
-       <select id="sortBy">
-         <option value="likes">Popularité</option>
-         <option value="date">Date</option>
-         <option value="title">Titre</option>
+  <div class="container_sortBy">
+    
+    <div class="container_sortBy_options">
+      <label for="sortBy">Trier par</label>
+      <select id="sortBy" >
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+        <option value="likes">Note</option>
       </select>
-    </section>`;
+    </div>
+  
+  </div>
+  
+    `;
   $page.appendChild(div4);
-
 
   const div5 = document.createElement("div");
   div5.className = "photographer_media";
@@ -111,16 +115,36 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-  console.log (mediaFactory)
+  console.log(media);
+  /*
+il faut prendre le tableau media et le trier par date, titre ou likes
 
-  //incrementation des likes A REVOIR
-  const iconsLikes = document.getElementsByClassName(".fa-heart");
-  let likes = media.map((media) => media.likes);
-
-  for (let i = 0; i < iconsLikes.length; i++) {
-    iconsLikes[i].addEventListener("click", function () {
-      likes[i]++;
-      console.log(likes);
+*/
+  function sortMedia() {
+    const select = document.querySelector("#sortBy");
+    select.addEventListener("change", function () {
+      const value = select.value;
+      console.log(value);
+      if (value === "date") {
+        media.sort((a, b) => {
+          return new Date(a.date) - new Date(b.date);
+        });
+      } else if (value === "title") {
+        media.sort((a, b) => {
+          return a.title.localeCompare(b.title);
+        });
+      } else if (value === "likes") {
+        media.sort((a, b) => {
+          return b.likes - a.likes;
+        });
+      }
+      console.log(media);
+      div5.innerHTML = "";
+      for (const mediaCard of media) {
+        div5.innerHTML += mediaFactory(mediaCard, photographer.name);
+      }
     });
   }
+    let trier = document.querySelector("#container_sortBy");
+    trier.addEventListener("click", sortMedia);
 }

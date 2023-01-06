@@ -1,5 +1,4 @@
 
-
 function mediaFactory(data, photographerName){
   photographerName = photographerName.split(" ")[0];
 
