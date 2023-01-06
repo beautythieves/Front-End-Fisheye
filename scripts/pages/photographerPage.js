@@ -101,6 +101,7 @@ async function displayPhotographer(photographer, media) {
     </section>`;
   $page.appendChild(div4);
 
+
   const div5 = document.createElement("div");
   div5.className = "photographer_media";
   let content = "";
@@ -109,6 +110,8 @@ async function displayPhotographer(photographer, media) {
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
+
+  console.log (mediaFactory)
 
   //incrementation des likes A REVOIR
   const iconsLikes = document.getElementsByClassName(".fa-heart");
