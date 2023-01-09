@@ -1,3 +1,5 @@
+// exposeInWindow([displayLightBox, closeLightbox, nextmedia, prevmedia]);
+
 import { $page, addLink } from "../app.js";
 import {
   filteredMedia,
@@ -11,7 +13,6 @@ import { displayLightBox } from "../utils/lightbox.js";
 
 // import exposeInWindow from "../utils/lightbox.js";
 
-// exposeInWindow([displayLightbox, closeLightbox, nextmedia, prevmedia]);
 
 //
 //
@@ -82,28 +83,21 @@ async function displayPhotographer(photographer, media) {
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
 
-  //zone de filtre images
-
-  // fleche bas : <i class="fas fa-chevron-down"></i>
-  // fleche haut: <i class="fas fa-chevron-up"></i>
-
+  //filter image zone
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
   <div class="container_sortBy">
-    
     <div class="container_sortBy_options">
       <label for="sortBy">Trier par</label>
-      <select id="sortBy" >
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-        <option value="likes">Note</option>
-      </select>
-    </div>
-  
-  </div>
-  
-    `;
+            <select id="sortBy" >
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+              <option value="likes">Note</option>
+            </select>
+     </div>
+ </div>
+  `;
   $page.appendChild(div4);
 
   const div5 = document.createElement("div");
@@ -115,8 +109,7 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-
-// trier les images par date, titre ou note
+  // sort images by date, title or likes
   function sortMedia() {
     const select = document.querySelector("#sortBy");
     select.addEventListener("change", function () {
@@ -142,6 +135,12 @@ async function displayPhotographer(photographer, media) {
       }
     });
   }
-    let trier = document.querySelector("#container_sortBy");
-    trier.addEventListener("click", sortMedia);
+  let trier = document.querySelector("#container_sortBy");
+  trier.addEventListener("click", sortMedia);
 }
+
+
+
+
+
+
