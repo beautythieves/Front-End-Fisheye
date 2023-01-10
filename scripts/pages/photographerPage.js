@@ -33,7 +33,7 @@ async function displayPhotographer(photographer, media) {
   const logo = document.querySelector(".logo");
   logo.onclick = function () {
     window.location.hash = "";
-    logo.href = "#";
+    logo.setAttribute("href", "#");
     logo.setAttribute = ("aria-label", "Accueil");
     logo.setAttribute = ("title", "Accueil");
     logo.setAttribute = ("alt", "page d'Accueil");
