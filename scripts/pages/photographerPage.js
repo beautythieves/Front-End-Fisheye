@@ -191,6 +191,8 @@ console.log(allLikesArray2);
     console.log(allLikesArray3);
 
 // aside total likes and price WORKS!
+// MANQUE MIS A JOUR DU TOTAL QUAND INCREMENTATION LIKES
+
 const div6 = document.createElement("aside");
 div6.className = "photographer_aside";
 div6.innerHTML = /*html*/ `
@@ -200,11 +202,16 @@ div6.innerHTML = /*html*/ `
   <i class="fa-regular fa-heart"></i>
 </div>  
 `;
-
-
 $page.appendChild(div6);
 
-}
+
+
+};
+
+// FUCNTION ASIDE UPDATE LIKES
+
+
+
 
 
 

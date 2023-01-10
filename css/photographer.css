@@ -163,21 +163,25 @@ form input {
 }
 
 /* aside total likes et prix/jour */
-/* this section should be seen on the right side of the page */
 
 .photographer_aside {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 50px;
   width: 300px;
   height: 8%;
   background-color: #db8876;
+
+
+  
 }
 .photographer_aside_total {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  font-size: 1rem;
+  font-weight: bold;
 
 
 }
