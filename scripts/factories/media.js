@@ -49,6 +49,20 @@ window.incrementLike = function (target){
   }
 }
 
+// compile total of likes
+
+console.log (document.querySelectorAll(".article_media_container_card_likes"));
+
+let likeElements = document.getElementsByClassName("article_media_container_card_likes");
+let totalLikes = 0;
+
+for (let i = 0; i < likeElements.length; i++) {
+    let likeCount = parseInt(likeElements[i].innerHTML);
+    totalLikes += likeCount;
+}
+
+console.log(totalLikes);
+
 
 export {mediaFactory, templateImage}
 

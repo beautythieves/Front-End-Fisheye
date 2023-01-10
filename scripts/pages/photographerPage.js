@@ -97,6 +97,19 @@ async function displayPhotographer(photographer, media) {
             </select>
      </div>
  </div>
+
+
+
+ <div class="custom-select">
+ <span class="custom-select-value">trier par</span>
+ <ul class="custom-select-options">
+   <li class="custom-select-option active">Date</li>
+   <li class="custom-select-option">Popularité</li>
+   <li class="custom-select-option">A-Z</li>
+ </ul>
+</div>
+
+
   `;
   $page.appendChild(div4);
 
@@ -108,6 +121,29 @@ async function displayPhotographer(photographer, media) {
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
+
+  
+
+  // tri par date, titre ou likes avec custom (deuxième option pour respecter la maquette)
+  function sortMedia() {
+    const select = document.getElementById("sortBy");
+    const options = select.options;
+    const selected = options[select.selectedIndex].value;
+    const media = document.querySelectorAll(".media");
+    const mediaArray = Array.from(media);
+    mediaArray.sort((a, b) => {
+      if (selected === "date") {
+        return a.dataset.date - b.dataset.date;
+      } else if (selected === "title") {
+        return a.dataset.title.localeCompare(b.dataset.title);
+      } else if (selected === "likes") {
+        return b.dataset.likes - a.dataset.likes;
+      }
+    });
+    mediaArray.forEach((media) => {
+      $page.appendChild(media);
+    });
+  }
 
   // sort images by date, title or likes
   function sortMedia() {
@@ -137,8 +173,38 @@ async function displayPhotographer(photographer, media) {
   }
   let trier = document.querySelector("#container_sortBy");
   trier.addEventListener("click", sortMedia);
-}
 
+  //get all the likes for each media WORKS!
+const allLikes = document.querySelectorAll(".article_media_container_card_likes");
+console.log(allLikes);
+const allLikesArray = Array.from(allLikes);
+console.log(allLikesArray);
+const allLikesArray2 = allLikesArray.map((like) => {
+  return like.textContent;
+});
+console.log(allLikesArray2);
+// sum the likes for each photographers WORKS!
+
+    const allLikesArray3 = allLikesArray2.reduce((acc, current) => {
+      return acc + parseInt(current);
+    }, 0);
+    console.log(allLikesArray3);
+
+// aside total likes and price WORKS!
+const div6 = document.createElement("aside");
+div6.className = "photographer_aside";
+div6.innerHTML = /*html*/ `
+<div class="photographer_aside_total">
+  <p class="photographer_aside_total_likes"> ${allLikesArray3}  </p>
+  <p class="photographer_aside_total_price"> ${photographer.price} €/ jour </p>
+  <i class="fa-regular fa-heart"></i>
+</div>  
+`;
+
+
+$page.appendChild(div6);
+
+}
 
 
 
