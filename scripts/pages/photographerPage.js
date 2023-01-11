@@ -9,9 +9,9 @@ import {
 } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
-import { displayLightBox } from "../utils/lightbox.js";
+import {exposeInWindow} from "../utils/lightbox.js";
 
-// import exposeInWindow from "../utils/lightbox.js";
+exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
 
 
 //
@@ -208,6 +208,16 @@ $page.appendChild(div6);
 
 };
 
+/**
+ * [updateLikes description]
+ *
+ * @param   {boolean}  incrementLike  [incrementLike description]
+ *
+ * @return  {void}                 [return description]
+ */
+window.updateLikes = function (incrementLike){
+
+}
 // FUCNTION ASIDE UPDATE LIKES
 
 

@@ -38,15 +38,19 @@ function templateImage(picture, title){
 }
 
 window.incrementLike = function (target){
-  const likes = parseInt(target.innerText);
-
+  let likes = parseInt(target.innerText);
+  let increment = false;
   if (target.classList.contains("isLiked")){
     target.innerText = likes - 1;
     target.classList.remove("isLiked");
   } else {
     target.innerText = likes + 1;
     target.classList.add("isLiked");
+    increment = true;
   }
+  likes = document.querySelector(".photographer_aside_total_likes");
+  const likesNumber = parseInt(likes.textContent);
+  likes.textContent = increment ? likesNumber + 1 : likesNumber - 1;
 }
 
 // compile total of likes

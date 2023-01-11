@@ -2,14 +2,15 @@ import { $page } from "../app.js";
 import { templateImage } from "../factories/media.js";
 import { filteredMedia, serverAddress } from "../utils/dataManager.js";
 console.log(templateImage);
-let $lightbox, allmedias, currentMediaIndex, $media;
-async function displayLightBox(photographerId, id, photographerName) {
+let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
+async function displayLightBox(photographerId, id, photographer) {
     try {
         allmedias = await filteredMedia(photographerId);
       } catch (error) {
         console.error(error);
         // Handle the error here
       }
+    photographerName = photographer;
     let altText, src, type;
     let i;
     for (i = 0; i < allmedias.length; i++) {
@@ -34,7 +35,7 @@ async function displayLightBox(photographerId, id, photographerName) {
         `<div class="lightbox__container">                
                 <button class="lightbox__close" onclick="closeModalLightbox()"><i class="fas fa-times"></i></button>
                 <button class="lightbox__next" onclick="nextMedia()"><i class="fas fa-chevron-right"></i></button>
-                <button class="lightbox__prev" onclick ="prevMedia()><i class ="fas fa-chevron-left"></i></button>
+                <button class="lightbox__prev" onclick ="prevMedia()"><i class ="fas fa-chevron-left"></i></button>
           <div class="lightbox__media__container" id="mediaInModal">
             ${mediaInModal()}
           </div> 
@@ -59,6 +60,17 @@ function nextMedia() {
     if (currentMediaIndex >= allmedias.length) {
         currentMediaIndex = 0;
     }
+    updateMedia();
+
+}
+
+function prevMedia() {
+    console.log("prev");
+    currentMediaIndex--;
+    if (currentMediaIndex <0 ) {
+        currentMediaIndex = allmedias.length - 1;
+    }
+    updateMedia();
 
 }
 
@@ -66,11 +78,17 @@ function mediaInModal() {
     const media = allmedias[currentMediaIndex];
     const src = media.image || media.video;
     const altText = media.title;
-    return media.image ? templateImg(src, altText) : "video";
+    return media.image
+      ? templateImg(src, altText)
+      : templateVideo(src, altText);
 }
 
 function templateImg(src, altText) {
     return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
+}
+
+function templateVideo(src, altText) {
+    return /*html*/ `<video src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}" controls></video>`;
 }
 
 function updateMedia() {
@@ -78,8 +96,14 @@ function updateMedia() {
     $media.innerHTML = mediaInModal();
 }
 
-export { displayLightBox, closeModalLightbox, nextMedia };
+// export { displayLightBox, closeModalLightbox, nextMedia };
 
+const methodsToExpose = {
+    displayLightBox,
+    closeModalLightbox,
+    nextMedia,
+    prevMedia
+};
 
 /**
  * [exposeInWindow description]
@@ -90,24 +114,13 @@ export { displayLightBox, closeModalLightbox, nextMedia };
  */
 
 
-/*
 
- function exposeInWindow(methodsToExpose) {
-    for (const method of methodsToExpose) {
-      // Make sure the method is a function before attempting to bind it
-      if (typeof this[method] === 'function') {
-        window[method] = this[method].bind(this);
-      }
-    }
+
+ function exposeInWindow() {
+     for (const [methodName, method] of Object.entries(methodsToExpose)) { 
+        window[methodName] = method.bind(this);
   }
-
-// Bind the exposeInWindow function to the correct object
-const boundExposeInWindow = exposeInWindow.bind(this);
-
-// Call the bound function and pass in the array of methods to expose
-boundExposeInWindow(['displayLightBox', 'closeModalLightbox', 'nextMedia']);
-
-export default boundExposeInWindow;
+}
 
 
-*/
+export {exposeInWindow};
