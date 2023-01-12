@@ -14,9 +14,6 @@ import {exposeInWindow} from "../utils/lightbox.js";
 exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
 
 
-//
-//
-
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
   const photographer = await getPhotographer(id);
@@ -83,7 +80,8 @@ async function displayPhotographer(photographer, media) {
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
 
-  //filter image zone
+  //filter image zone. On peut ici pour plus styliser utiliser selectmenu au lieu de select
+  //: nb: pour le moment, le selectmenu est en phase expérimentale 
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
@@ -95,21 +93,8 @@ async function displayPhotographer(photographer, media) {
               <option value="title">Titre</option>
               <option value="likes">Note</option>
             </select>
-     </div>
+    </div>
  </div>
-
-
-
- <div class="custom-select">
- <span class="custom-select-value">trier par</span>
- <ul class="custom-select-options">
-   <li class="custom-select-option active">Date</li>
-   <li class="custom-select-option">Popularité</li>
-   <li class="custom-select-option">A-Z</li>
- </ul>
-</div>
-
-
   `;
   $page.appendChild(div4);
 
@@ -124,27 +109,7 @@ async function displayPhotographer(photographer, media) {
 
   
 
-  // tri par date, titre ou likes avec custom (deuxième option pour respecter la maquette)
-  function sortMedia() {
-    const select = document.getElementById("sortBy");
-    const options = select.options;
-    const selected = options[select.selectedIndex].value;
-    const media = document.querySelectorAll(".media");
-    const mediaArray = Array.from(media);
-    mediaArray.sort((a, b) => {
-      if (selected === "date") {
-        return a.dataset.date - b.dataset.date;
-      } else if (selected === "title") {
-        return a.dataset.title.localeCompare(b.dataset.title);
-      } else if (selected === "likes") {
-        return b.dataset.likes - a.dataset.likes;
-      }
-    });
-    mediaArray.forEach((media) => {
-      $page.appendChild(media);
-    });
-  }
-
+  
   // sort images by date, title or likes
   function sortMedia() {
     const select = document.querySelector("#sortBy");
@@ -199,13 +164,9 @@ div6.innerHTML = /*html*/ `
 <div class="photographer_aside_total">
   <p class="photographer_aside_total_likes"> ${allLikesArray3}  </p>
   <p class="photographer_aside_total_price"> ${photographer.price} €/ jour </p>
-  <i class="fa-regular fa-heart"></i>
 </div>  
 `;
 $page.appendChild(div6);
-
-
-
 };
 
 /**
