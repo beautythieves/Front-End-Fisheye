@@ -1,4 +1,3 @@
-// exposeInWindow([displayLightBox, closeLightbox, nextmedia, prevmedia]);
 
 import { $page, addLink } from "../app.js";
 import {

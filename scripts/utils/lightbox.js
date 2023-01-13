@@ -39,8 +39,19 @@ async function displayLightBox(photographerId, id, photographer) {
             ${mediaInModal()}
           </div> 
       </div> `;
+      
   $page.appendChild($lightbox);
+  // add aria-labels to buttons close, next, prev
+const $lightboxClose = document.querySelector(".lightbox__close");
+$lightboxClose.setAttribute("aria-label", "close lightbox");
+const $lightboxNext = document.querySelector(".lightbox__next");
+$lightboxNext.setAttribute("aria-label", "next media");
+const $lightboxPrev = document.querySelector(".lightbox__prev");
+$lightboxPrev.setAttribute("aria-label", "previous media");
 }
+
+
+
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
 }
@@ -114,3 +125,4 @@ function exposeInWindow() {
 }
 
 export { exposeInWindow };
+
