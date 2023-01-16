@@ -1,12 +1,5 @@
-// import de la fonction showPhotographerPage renommée
-// photograherPage (possible car default)
-
 import photographerPage from "./pages/photographerPage.js";
-// import de showIndexPage renommée indexPage
 import indexPage from "./pages/index.js";
-// ajout import contactform
-
-
 
 function addLink(target, content) {
   const link = document.createElement("a");
@@ -37,5 +30,4 @@ function changePage() {
 }
 changePage();
 
-console.log(photographerPage);
 export { addLink, $page };

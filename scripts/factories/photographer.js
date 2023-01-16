@@ -16,12 +16,7 @@ function photographerFactory(data) {
             </article>
         `;
 
-
-
   return { name, picture, pagePath, templateCard };
 }
 
-
-export {
-    photographerFactory
-}
+export { photographerFactory };

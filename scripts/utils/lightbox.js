@@ -1,7 +1,6 @@
 import { $page } from "../app.js";
 import { templateImage } from "../factories/media.js";
 import { filteredMedia, serverAddress } from "../utils/dataManager.js";
-console.log(templateImage);
 let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
 async function displayLightBox(photographerId, id, photographer) {
   try {
@@ -50,12 +49,9 @@ const $lightboxPrev = document.querySelector(".lightbox__prev");
 $lightboxPrev.setAttribute("aria-label", "previous media");
 }
 
-
-
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
 }
-
 /* fermeture lightbox avec la touche escape*/
 document.addEventListener("keyup", function (e) {
   if (e.key === "Escape") {

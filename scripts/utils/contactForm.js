@@ -18,6 +18,7 @@ export function displayModal() {
   const h2Modal = document.createElement("h2");
   h2Modal.textContent = "Contactez-moi";
   h2Modal.setAttribute("id", "contact_modal_title");
+  h2Modal.setAttribute("title", "Contactez-moi");
   headerModal.appendChild(h2Modal);
   const imgModal = document.createElement("img");
   imgModal.src = "assets/icons/close.svg";
@@ -53,30 +54,32 @@ export function displayModal() {
   labelNameFormModal.textContent = "Nom";
   labelFormModal.setAttribute("for", "nom");
   labelFormModal.setAttribute("title", "Veuillez saisir votre nom");
-  labelFormModal.setAttribute("aria-required", "required");
+  labelFormModal.setAttribute("required", "required");
   divFormModal.appendChild(labelNameFormModal);
 
   const inputNameFormModal = document.createElement("input");
-  inputFormModal.setAttribute("type", "text");
-  inputFormModal.setAttribute("id", "nom");
-  inputFormModal.setAttribute("name", "nom");
-  inputFormModal.setAttribute("aria-required", "required");
-    inputFormModal.setAttribute("required", "required");
+  inputNameFormModal.setAttribute("type", "text");
+  inputNameFormModal.setAttribute("id", "nom");
+  inputNameFormModal.setAttribute("aria-label", "Veuillez saisir votre nom")
+  inputNameFormModal.setAttribute("name", "nom");
+  inputNameFormModal.setAttribute("required", "required");
+  inputNameFormModal.setAttribute("title", "Veuillez saisir votre nom");
 
   divFormModal.appendChild(inputNameFormModal);
 
   const labelEmailFormModal = document.createElement("label");
   labelEmailFormModal.textContent = "Email";
   labelEmailFormModal.setAttribute("for", "email");
-  labelEmailFormModal.setAttribute("title", "Veuillez saisir votre email");
   labelEmailFormModal.setAttribute("aria-required", "required");
+  labelEmailFormModal.setAttribute("required", "required");
   divFormModal.appendChild(labelEmailFormModal);
   const inputEmailFormModal = document.createElement("input");
   inputEmailFormModal.setAttribute("type", "email");
   inputEmailFormModal.setAttribute("id", "email");
   inputEmailFormModal.setAttribute("name", "email");
   inputEmailFormModal.setAttribute("aria-required", "required");
-    inputEmailFormModal.setAttribute("required", "required");
+  inputEmailFormModal.setAttribute("required", "required");
+  inputEmailFormModal.setAttribute("title", "Veuillez saisir votre email");
   divFormModal.appendChild(inputEmailFormModal);
 
   const labelMessageFormModal = document.createElement("label");
@@ -118,7 +121,7 @@ document.addEventListener("keyup", function (e) {
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
+  modal.parentNode.removeChild(modal);
 }
 
 // elements focusables pour la navigation au clavier 
@@ -128,7 +131,7 @@ function trapFocus(element) {
   console.log (focusableEls)
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
-  var KEYCODE_TAB = 9;
+  const KEYCODE_TAB = 9;
 
   element.addEventListener("keydown", function (e) {
     if (e.key === "Tab" || e.keyCode === KEYCODE_TAB) {

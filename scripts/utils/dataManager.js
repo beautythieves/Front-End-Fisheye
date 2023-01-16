@@ -104,7 +104,5 @@ async function filteredMedia(photographerId) {
       return data;
   }
 }
-console.log(getPhotographer);
 
 export {serverAddress, getAllData, getPhotographers, filteredMedia, getPhotographer };
-console.log(data);

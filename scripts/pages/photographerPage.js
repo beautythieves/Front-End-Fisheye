@@ -17,7 +17,6 @@ export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
   const photographer = await getPhotographer(id);
 
-  // const photographer  = {};
   displayPhotographer(photographer, media);
 }
 
@@ -80,7 +79,7 @@ async function displayPhotographer(photographer, media) {
   picId.alt = "portrait de ${photographer.name}";
 
   //filter image zone. On peut ici pour plus styliser utiliser selectmenu au lieu de select
-  //: nb: pour le moment, le selectmenu est en phase expérimentale 
+  //: nb: pour le moment,(janv 23) le selectmenu est en phase expérimentale 
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
@@ -105,8 +104,6 @@ async function displayPhotographer(photographer, media) {
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
-
-  
 
   
   // sort images by date, title or likes
@@ -138,7 +135,7 @@ async function displayPhotographer(photographer, media) {
   let trier = document.querySelector("#container_sortBy");
   trier.addEventListener("click", sortMedia);
 
-  //get all the likes for each media WORKS!
+  //get all the likes for each media 
 const allLikes = document.querySelectorAll(".article_media_container_card_likes");
 console.log(allLikes);
 const allLikesArray = Array.from(allLikes);
@@ -147,7 +144,7 @@ const allLikesArray2 = allLikesArray.map((like) => {
   return like.textContent;
 });
 console.log(allLikesArray2);
-// sum the likes for each photographers WORKS!
+// sum the likes for each photographers 
 
     const allLikesArray3 = allLikesArray2.reduce((acc, current) => {
       return acc + parseInt(current);
@@ -155,7 +152,6 @@ console.log(allLikesArray2);
     console.log(allLikesArray3);
 
 // aside total likes and price WORKS!
-// MANQUE MIS A JOUR DU TOTAL QUAND INCREMENTATION LIKES
 
 const div6 = document.createElement("aside");
 div6.className = "photographer_aside";
@@ -166,7 +162,9 @@ div6.innerHTML = /*html*/ `
 </div>  
 `;
 $page.appendChild(div6);
-};
+const likes = document.querySelector(".photographer_aside_total_likes");
+likes.setAttribute("aria-label", "likes");
+}
 
 /**
  * [updateLikes description]
@@ -178,7 +176,6 @@ $page.appendChild(div6);
 window.updateLikes = function (incrementLike){
 
 }
-// FUCNTION ASIDE UPDATE LIKES
 
 
 

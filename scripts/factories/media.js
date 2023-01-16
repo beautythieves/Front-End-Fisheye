@@ -20,7 +20,6 @@ const templateMedia = /*html*/ `
   </div>
 </article>
 `;
-// return { picture, templateMedia };
 return templateMedia;
 }
 

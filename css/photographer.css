@@ -293,6 +293,10 @@ form input {
   color: rgb(151, 12, 12);
   cursor: pointer;
   height: 100px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .lightbox__prev {
   grid-area: back;
@@ -302,6 +306,10 @@ form input {
   align-items: center;
   justify-content: center;
   height: 100px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .lightbox__media__container {
   grid-area: image;
