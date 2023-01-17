@@ -89,7 +89,7 @@ async function displayPhotographer(photographer, media) {
             <select id="sortBy" >
               <option value="date">Date</option>
               <option value="title">Titre</option>
-              <option value="likes">Note</option>
+              <option value="likes">Popularité</option>
             </select>
     </div>
  </div>
@@ -164,6 +164,9 @@ div6.innerHTML = /*html*/ `
 $page.appendChild(div6);
 const likes = document.querySelector(".photographer_aside_total_likes");
 likes.setAttribute("aria-label", "likes");
+const aside = document.querySelector(".photographer_aside");
+aside.setAttribute("aria-label", "aside");
+aside.setAttribute("role", "complementary");
 }
 
 /**
