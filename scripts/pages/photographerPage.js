@@ -67,6 +67,7 @@ async function displayPhotographer(photographer, media) {
   button.className = "contact_button";
   div2.appendChild(button);
   button.textContent = "Contactez-moi";
+  button.setAttribute("aria-label", "Contactez-moi");
   button.onclick = displayModal;
 
   const div3 = document.createElement("div");
