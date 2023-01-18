@@ -51,10 +51,22 @@ async function displayLightBox(photographerId, id, photographer) {
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
 }
-/* fermeture lightbox avec la touche escape*/
+/* close lightbox with esc key*/
 document.addEventListener("keyup", function (e) {
   if (e.key === "Escape") {
     closeModalLightbox();
+  } else return;
+});
+/* go to next media with right arrow key*/
+document.addEventListener("keyup", function (e) {
+  if (e.key === "ArrowRight") {
+    nextMedia();
+  } else return;
+});
+/* go to previous media with left arrow key*/
+document.addEventListener("keyup", function (e) {
+  if (e.key === "ArrowLeft") {
+    prevMedia();
   } else return;
 });
 
