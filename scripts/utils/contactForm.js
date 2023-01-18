@@ -100,6 +100,10 @@ export function displayModal() {
   const buttonFormModal = document.createElement("button");
   buttonFormModal.className = "send_button";
   buttonFormModal.textContent = "Envoyer";
+  buttonFormModal.setAttribute("type", "submit");
+  buttonFormModal.setAttribute("aria-label", "Envoyer le formulaire");
+  buttonFormModal.setAttribute("title", "Envoyer le formulaire");
+  buttonFormModal.onclick = closeModal;
   formModal.appendChild(buttonFormModal);
 
   // ACCESSIBILITE
