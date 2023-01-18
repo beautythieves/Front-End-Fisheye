@@ -1,5 +1,4 @@
 import { $page } from "../app.js";
-import { templateImage } from "../factories/media.js";
 import { filteredMedia, serverAddress } from "../utils/dataManager.js";
 let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
 async function displayLightBox(photographerId, id, photographer) {
@@ -10,23 +9,23 @@ async function displayLightBox(photographerId, id, photographer) {
     // Handle the error here
   }
   photographerName = photographer;
-  let altText, src, type;
+  // let altText, src, type;
   let i;
   for (i = 0; i < allmedias.length; i++) {
     const media = allmedias[i];
     if (media.id === id) {
       currentMediaIndex = i;
-      src = media.image || media.video;
-      altText = media.title;
-      type = media.image ? "image" : "video";
+      // src = media.image || media.video;
+      // altText = media.title;
+      // type = media.image ? "image" : "video";
       break;
     }
   }
 
   $lightbox = document.createElement("section");
-  const imgSource = document.getElementsByClassName(
-    "article_media_container_card_img"
-  );
+  // const imgSource = document.getElementsByClassName(
+  //   "article_media_container_card_img"
+  // );
   $lightbox.className = "lightbox";
   $lightbox.innerHTML =
     /*html*/
@@ -38,15 +37,15 @@ async function displayLightBox(photographerId, id, photographer) {
             ${mediaInModal()}
           </div> 
       </div> `;
-      
+
   $page.appendChild($lightbox);
   // add aria-labels to buttons close, next, prev
-const $lightboxClose = document.querySelector(".lightbox__close");
-$lightboxClose.setAttribute("aria-label", "close lightbox");
-const $lightboxNext = document.querySelector(".lightbox__next");
-$lightboxNext.setAttribute("aria-label", "next media");
-const $lightboxPrev = document.querySelector(".lightbox__prev");
-$lightboxPrev.setAttribute("aria-label", "previous media");
+  const $lightboxClose = document.querySelector(".lightbox__close");
+  $lightboxClose.setAttribute("aria-label", "close lightbox");
+  const $lightboxNext = document.querySelector(".lightbox__next");
+  $lightboxNext.setAttribute("aria-label", "next media");
+  const $lightboxPrev = document.querySelector(".lightbox__prev");
+  $lightboxPrev.setAttribute("aria-label", "previous media");
 }
 
 function closeModalLightbox() {
@@ -121,4 +120,3 @@ function exposeInWindow() {
 }
 
 export { exposeInWindow };
-

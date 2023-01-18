@@ -31,9 +31,7 @@ let activeFilter = "date";
 
 const serverAddress = "http://localhost:5500";
 
-function setActiveFilter(filter) {
-  activeFilter = filter;
-}
+
 /**
  * permet d'avoir la liste des photographes
  *
@@ -88,7 +86,7 @@ async function getPhotographer(id) {
  * @param   {Number}  photographerId
  * 
  *
- * @return   {Array.<Media>}
+ * @return   {Promise.<Array.<Media>>}
  */
 async function filteredMedia(photographerId) {
   const data = await getMediaFromPhotographer(photographerId);

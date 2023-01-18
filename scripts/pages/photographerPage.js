@@ -1,10 +1,8 @@
 
-import { $page, addLink } from "../app.js";
+import { $page } from "../app.js";
 import {
   filteredMedia,
   getPhotographer,
-  getPhotographers,
-  getAllData,
 } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
@@ -169,22 +167,3 @@ const aside = document.querySelector(".photographer_aside");
 aside.setAttribute("aria-label", "aside");
 aside.setAttribute("role", "complementary");
 }
-
-/**
- * [updateLikes description]
- *
- * @param   {boolean}  incrementLike  [incrementLike description]
- *
- * @return  {void}                 [return description]
- */
-window.updateLikes = function (incrementLike){
-
-}
-
-
-
-
-
-
-
-

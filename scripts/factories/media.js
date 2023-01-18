@@ -1,15 +1,24 @@
-
+/**
+ * @typedef {Object} action
+ * @property {Number} photographerId
+ * @property {String} photographerName
+ * @property {Number} id
+ */
 function mediaFactory(data, photographerName){
   photographerName = photographerName.split(" ")[0];
 
-const { image, video, likes, date, price, id, photographerId, title } = data;
+const { image, video, likes, id, photographerId, title } = data;
 const picture = `/assets/media/${photographerName}/${image||video}`;
+const action = {
+  photographerId,
+  photographerName,
+  id
+};
 const templateMedia = /*html*/ `
-<article class="article_media" title= "photographie de ${title}" 
-  onclick="displayLightBox(${photographerId}, ${id}, '${photographerName}')">
+<article class="article_media" title= "photographie de ${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
-      ${image ? templateImage(picture, title) : templateVideo(picture)}
+      ${image ? templateImage(picture, title, action) : templateVideo(picture, action)}
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
         <h3 class= "article_media_container_card_likes"  
@@ -23,18 +32,44 @@ const templateMedia = /*html*/ `
 return templateMedia;
 }
 
-function templateVideo(videoName){
+function templateVideo(videoName, action){
   return /*html*/ `
-  <video class="article_media_container_card_img" controls>
+  <video class="article_media_container_card_img" controls ${openModale(action)}>
      <source src="${videoName}" type="video/mp4">
   </video>
   `;
 }
 
-function templateImage(picture, title){
+/**
+ * [templateImage description]
+ *
+ * @param   {String}  picture
+ * @param   {String}  title
+ * @param   {action}  [action]
+ *
+ * @return  {String} 
+ */
+function templateImage(picture, title, action){
   return /*html*/ `
-  <img src="${picture}" alt="photo de ${title}"  class="article_media_container_card_img">
-  `;
+  <img 
+    src="${picture}"
+    alt="photo de ${title}"
+    class="article_media_container_card_img"
+    ${openModale(action)}
+  />
+  `
+}
+
+/**
+ * [openModale description]
+ *
+ * @param   {action}  [action]
+ *
+ * @return  {String}
+ */
+function openModale(action){
+  if (!action) return "";
+  return `onclick="displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}')"`;
 }
 
 window.incrementLike = function (target){
