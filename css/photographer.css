@@ -298,6 +298,12 @@ form input {
   justify-self: center;
   border-color:#fafafa
 }
+.lightbox__title {
+  font-size: 25px;
+  color: rgb(151, 12, 12);
+  align-self: flex-start;
+  border-color:#fafafa
+}
 .lightbox__prev {
   grid-area: back;
   font-size: 50px;
