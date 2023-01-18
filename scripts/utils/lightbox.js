@@ -22,11 +22,15 @@ async function displayLightBox(photographerId, id, photographer) {
       break;
     }
   }
-// add ishhidden to aside and photgrapher_media
+// add ishhidden to aside, .photographer_media, header and article
   const aside = document.querySelector(".photographer_aside");
   aside.classList.add("isHidden");
   const photographerMedia = document.querySelector(".photographer_media");
   photographerMedia.classList.add("isHidden");
+  const header = document.querySelector("header");
+  header.classList.add("isHidden");
+  const article= document.querySelector("article");
+  article.classList.add("isHidden");
 
   $lightbox = document.createElement("section");
   // const imgSource = document.getElementsByClassName(
@@ -53,13 +57,17 @@ async function displayLightBox(photographerId, id, photographer) {
   const $lightboxPrev = document.querySelector(".lightbox__prev");
   $lightboxPrev.setAttribute("aria-label", "previous media");
 }
-
+// remove ishidden to aside photographer_media, header and article
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
   const aside = document.querySelector(".photographer_aside");
   aside.classList.remove("isHidden");
   const photographerMedia = document.querySelector(".photographer_media");
   photographerMedia.classList.remove("isHidden");
+  const header= document.querySelector("header");
+  header.classList.remove("isHidden");
+  const article= document.querySelector("article");
+  article.classList.remove("isHidden");
   
 }
 
@@ -104,18 +112,24 @@ function prevMedia() {
 
 function mediaInModal() {
   const media = allmedias[currentMediaIndex];
-  const src = media.image || media.video;
+  const src = `${serverAddress}/assets/media/${photographerName}/${media.image || media.video}`;
   const altText = media.title;
-  return media.image ? templateImg(src, altText) : templateVideo(src, altText);
+  const title = media.title;
+  return media.image ?
+    `<img src="${src}" alt="${altText}" class="lightbox__media"/>
+    <p class="lightbox__title">${title}</p>` :
+    `<video src="${src}" alt="${altText}" class="lightbox__media" controls></video>
+    <p class="lightbox__title">${title}</p>`;
+ 
 }
 
-function templateImg(src, altText) {
-  return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
-}
+// function templateImg(src, altText) {
+//   return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
+// }
 
-function templateVideo(src, altText) {
-  return /*html*/ `<video src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}" controls></video>`;
-}
+// function templateVideo(src, altText) {
+//   return /*html*/ `<video src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}" controls></video>`;
+// }
 
 function updateMedia() {
   if (!$media) $media = document.getElementById("mediaInModal");
