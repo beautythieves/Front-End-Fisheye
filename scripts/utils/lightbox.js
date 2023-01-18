@@ -8,6 +8,7 @@ async function displayLightBox(photographerId, id, photographer) {
     console.error(error);
     // Handle the error here
   }
+  
   photographerName = photographer;
   // let altText, src, type;
   let i;
@@ -21,6 +22,11 @@ async function displayLightBox(photographerId, id, photographer) {
       break;
     }
   }
+// add ishhidden to aside and photgrapher_media
+  const aside = document.querySelector(".photographer_aside");
+  aside.classList.add("isHidden");
+  const photographerMedia = document.querySelector(".photographer_media");
+  photographerMedia.classList.add("isHidden");
 
   $lightbox = document.createElement("section");
   // const imgSource = document.getElementsByClassName(
@@ -30,7 +36,7 @@ async function displayLightBox(photographerId, id, photographer) {
   $lightbox.innerHTML =
     /*html*/
     `<div class="lightbox__container">                
-                <button class="lightbox__close" onclick="closeModalLightbox()"><i class="fas fa-times"></i></button>
+                <button class="lightbox__close" onclick="closeModalLightbox()"><i class="material-icons md-50">close</i>                </button>
                 <button class="lightbox__next" onclick="nextMedia()"><i class="fas fa-chevron-right"></i></button>
                 <button class="lightbox__prev" onclick ="prevMedia()"><i class ="fas fa-chevron-left"></i></button>
           <div class="lightbox__media__container" id="mediaInModal">
@@ -50,7 +56,14 @@ async function displayLightBox(photographerId, id, photographer) {
 
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
+  const aside = document.querySelector(".photographer_aside");
+  aside.classList.remove("isHidden");
+  const photographerMedia = document.querySelector(".photographer_media");
+  photographerMedia.classList.remove("isHidden");
+  
 }
+
+/*ACESSIBILITY*/
 /* close lightbox with esc key*/
 document.addEventListener("keyup", function (e) {
   if (e.key === "Escape") {
@@ -69,6 +82,7 @@ document.addEventListener("keyup", function (e) {
     prevMedia();
   } else return;
 });
+
 
 function nextMedia() {
   console.log("next");

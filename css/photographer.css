@@ -256,6 +256,9 @@ form input {
 }
 
 /* lightbox */
+.isHidden {
+  display: none;
+}
 
 .lightbox {
   display: grid;
@@ -272,7 +275,7 @@ form input {
   grid-template-rows: 1fr 10fr;
   grid-template-columns: 1fr 10fr 1fr;
   background-color: white;
-  margin: 100px;
+  margin: 0px;
   width: 90%;
 }
 
@@ -328,17 +331,11 @@ form input {
   margin: 0;
 }
 
-.lightbox__prev,
-.lightbox__next,
-.lightbox__close :hover {
-  font-size: 50px;
-  color: rgb(151, 12, 12);
-  cursor: pointer;
-}
-.fa-times,
+
+
 .fa-chevron-right,
-.fa-chevron-left {
-  font-size: 50px;
+.fa-chevron-left, .material-icons {
+  font-size: 50px!important;
   color: rgb(151, 12, 12);
   cursor: pointer;
 }
