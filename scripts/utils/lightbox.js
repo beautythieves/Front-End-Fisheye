@@ -6,36 +6,31 @@ async function displayLightBox(photographerId, id, photographer) {
     allmedias = await filteredMedia(photographerId);
   } catch (error) {
     console.error(error);
-    // Handle the error here
   }
-  
+
   photographerName = photographer;
-  // let altText, src, type;
   let i;
   for (i = 0; i < allmedias.length; i++) {
     const media = allmedias[i];
     if (media.id === id) {
       currentMediaIndex = i;
-      // src = media.image || media.video;
-      // altText = media.title;
-      // type = media.image ? "image" : "video";
       break;
     }
   }
-// add ishhidden to aside, .photographer_media, header and article
+  // add ishhidden to aside, .photographer_media, header, container_sortBy article
   const aside = document.querySelector(".photographer_aside");
   aside.classList.add("isHidden");
   const photographerMedia = document.querySelector(".photographer_media");
   photographerMedia.classList.add("isHidden");
   const header = document.querySelector("header");
   header.classList.add("isHidden");
-  const article= document.querySelector("article");
+  const article = document.querySelector("article");
   article.classList.add("isHidden");
+  const sortBy = document.querySelector(".container_sortBy");
+  sortBy.classList.add("isHidden");
 
   $lightbox = document.createElement("section");
-  // const imgSource = document.getElementsByClassName(
-  //   "article_media_container_card_img"
-  // );
+  
   $lightbox.className = "lightbox";
   $lightbox.innerHTML =
     /*html*/
@@ -57,18 +52,19 @@ async function displayLightBox(photographerId, id, photographer) {
   const $lightboxPrev = document.querySelector(".lightbox__prev");
   $lightboxPrev.setAttribute("aria-label", "previous media");
 }
-// remove ishidden to aside photographer_media, header and article
+// remove ishidden to aside photographer_media, header, container_sortBy and article
 function closeModalLightbox() {
   $lightbox.parentNode.removeChild($lightbox);
   const aside = document.querySelector(".photographer_aside");
   aside.classList.remove("isHidden");
   const photographerMedia = document.querySelector(".photographer_media");
   photographerMedia.classList.remove("isHidden");
-  const header= document.querySelector("header");
+  const header = document.querySelector("header");
   header.classList.remove("isHidden");
-  const article= document.querySelector("article");
+  const article = document.querySelector("article");
   article.classList.remove("isHidden");
-  
+  const sortBy = document.querySelector(".container_sortBy");
+  sortBy.classList.remove("isHidden");
 }
 
 /*ACESSIBILITY*/
@@ -91,7 +87,6 @@ document.addEventListener("keyup", function (e) {
   } else return;
 });
 
-
 function nextMedia() {
   console.log("next");
   currentMediaIndex++;
@@ -112,31 +107,22 @@ function prevMedia() {
 
 function mediaInModal() {
   const media = allmedias[currentMediaIndex];
-  const src = `${serverAddress}/assets/media/${photographerName}/${media.image || media.video}`;
+  const src = `${serverAddress}/assets/media/${photographerName}/${
+    media.image || media.video
+  }`;
   const altText = media.title;
   const title = media.title;
-  return media.image ?
-    `<img src="${src}" alt="${altText}" class="lightbox__media"/>
-    <p class="lightbox__title">${title}</p>` :
-    `<video src="${src}" alt="${altText}" class="lightbox__media" controls></video>
+  return media.image
+    ? `<img src="${src}" alt="${altText}" class="lightbox__media"/>
+    <p class="lightbox__title">${title}</p>`
+    : `<video src="${src}" alt="${altText}" class="lightbox__media" controls></video>
     <p class="lightbox__title">${title}</p>`;
- 
 }
-
-// function templateImg(src, altText) {
-//   return /*html*/ `<img src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}">`;
-// }
-
-// function templateVideo(src, altText) {
-//   return /*html*/ `<video src="${serverAddress}/assets/media/${photographerName}/${src}" alt="${altText}" controls></video>`;
-// }
 
 function updateMedia() {
   if (!$media) $media = document.getElementById("mediaInModal");
   $media.innerHTML = mediaInModal();
 }
-
-// export { displayLightBox, closeModalLightbox, nextMedia };
 
 const methodsToExpose = {
   displayLightBox,

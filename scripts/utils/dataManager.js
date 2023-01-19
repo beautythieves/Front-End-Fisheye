@@ -31,7 +31,6 @@ let activeFilter = "date";
 
 const serverAddress = "http://localhost:5500";
 
-
 /**
  * permet d'avoir la liste des photographes
  *
@@ -84,7 +83,7 @@ async function getPhotographer(id) {
  * [async description]
  *
  * @param   {Number}  photographerId
- * 
+ *
  *
  * @return   {Promise.<Array.<Media>>}
  */
@@ -97,10 +96,16 @@ async function filteredMedia(photographerId) {
       return data.sort((a, b) => b.likes - a.likes); // trier par popularité
     case "titre":
       return data.sort((a, b) => a.title.localeCompare(b.title));
-    
-    default : 
+
+    default:
       return data;
   }
 }
 
-export {serverAddress, getAllData, getPhotographers, filteredMedia, getPhotographer };
+export {
+  serverAddress,
+  getAllData,
+  getPhotographers,
+  filteredMedia,
+  getPhotographer,
+};

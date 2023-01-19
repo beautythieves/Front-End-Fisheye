@@ -1,4 +1,3 @@
-
 export function displayModal() {
   const mainDivModal = document.createElement("div");
   mainDivModal.id = "contact_modal";
@@ -10,8 +9,8 @@ export function displayModal() {
   const divModal = document.createElement("div");
   divModal.className = "modal";
   divModal.style.position = "absolute";
-    divModal.style.top = "15%";
-    divModal.style.left = "20%";
+  divModal.style.top = "15%";
+  divModal.style.left = "20%";
   mainDivModal.appendChild(divModal);
   const headerModal = document.createElement("header");
   divModal.appendChild(headerModal);
@@ -49,18 +48,19 @@ export function displayModal() {
   inputFormModal.setAttribute("aria-required", "required");
   inputFormModal.setAttribute("required", "required");
   divFormModal.appendChild(inputFormModal);
+  inputFormModal.focus();
 
   const labelNameFormModal = document.createElement("label");
   labelNameFormModal.textContent = "Nom";
-  labelFormModal.setAttribute("for", "nom");
-  labelFormModal.setAttribute("title", "Veuillez saisir votre nom");
-  labelFormModal.setAttribute("required", "required");
+  labelNameFormModal.setAttribute("for", "nom");
+  labelNameFormModal.setAttribute("title", "Veuillez saisir votre nom");
+  labelNameFormModal.setAttribute("required", "required");
   divFormModal.appendChild(labelNameFormModal);
 
   const inputNameFormModal = document.createElement("input");
   inputNameFormModal.setAttribute("type", "text");
   inputNameFormModal.setAttribute("id", "nom");
-  inputNameFormModal.setAttribute("aria-label", "Veuillez saisir votre nom")
+  inputNameFormModal.setAttribute("aria-label", "Veuillez saisir votre nom");
   inputNameFormModal.setAttribute("name", "nom");
   inputNameFormModal.setAttribute("required", "required");
   inputNameFormModal.setAttribute("title", "Veuillez saisir votre nom");
@@ -87,14 +87,13 @@ export function displayModal() {
   labelMessageFormModal.setAttribute("for", "message");
   labelMessageFormModal.setAttribute("title", "Veuillez saisir votre message");
   labelMessageFormModal.setAttribute("aria-required", "required");
-  
 
   divFormModal.appendChild(labelMessageFormModal);
   const inputMessageFormModal = document.createElement("textarea");
   inputMessageFormModal.setAttribute("id", "message");
   inputMessageFormModal.setAttribute("name", "message");
   inputMessageFormModal.setAttribute("aria-required", "required");
-    inputMessageFormModal.setAttribute("required", "required");
+  inputMessageFormModal.setAttribute("required", "required");
   divFormModal.appendChild(inputMessageFormModal);
 
   const buttonFormModal = document.createElement("button");
@@ -106,17 +105,16 @@ export function displayModal() {
   buttonFormModal.onclick = closeModal;
   formModal.appendChild(buttonFormModal);
 
+  // focus ont the first field of the form
+  document.querySelector("#contact_modal").querySelector("input").focus();
   // ACCESSIBILITE
-  //.cache le reste du document
+  //.hide the rest of the  document
   document.querySelector("#main").setAttribute("aria-hidden", "true");
 
-  // focus sur le premier champ du formulaire
   trapFocus(mainDivModal);
-
 }
 
-
-// fermeture de la modale avec la touche escape FONCTIONNE !!
+// close modal with escape key
 document.addEventListener("keyup", function (e) {
   if (e.key === "Escape") {
     closeModal();
@@ -128,11 +126,12 @@ function closeModal() {
   modal.parentNode.removeChild(modal);
 }
 
-// elements focusables pour la navigation au clavier 
-//avec tab (avancer) ou shift tab (recul) FONCTIONNE !!
+// focusable elements with tab and shift tab
 function trapFocus(element) {
-  const focusableEls = document.querySelectorAll("input, textarea,.send_button");
-  console.log (focusableEls)
+  const focusableEls = document.querySelectorAll(
+    "input, textarea,.send_button"
+  );
+  console.log(focusableEls);
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
   const KEYCODE_TAB = 9;
@@ -153,5 +152,3 @@ function trapFocus(element) {
     }
   });
 }
-
-

@@ -1,15 +1,10 @@
-
 import { $page } from "../app.js";
-import {
-  filteredMedia,
-  getPhotographer,
-} from "../utils/dataManager.js";
+import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
-import {exposeInWindow} from "../utils/lightbox.js";
+import { exposeInWindow } from "../utils/lightbox.js";
 
 exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
-
 
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
@@ -77,8 +72,8 @@ async function displayPhotographer(photographer, media) {
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
 
-  //filter image zone. On peut ici pour plus styliser utiliser selectmenu au lieu de select
-  //: nb: pour le moment,(janv 23) le selectmenu est en phase expérimentale 
+  //filter image zone. we can use selectmenu html tag but it's not supported by all browsers
+  //for the moment (jan 23) selectmenu is on experimental phase
   const div4 = document.createElement("div");
   div4.setAttribute("id", "container_sortBy");
   div4.innerHTML = /*html*/ `
@@ -104,7 +99,6 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-  
   // sort images by date, title or likes
   function sortMedia() {
     const select = document.querySelector("#sortBy");
@@ -134,36 +128,33 @@ async function displayPhotographer(photographer, media) {
   let trier = document.querySelector("#container_sortBy");
   trier.addEventListener("click", sortMedia);
 
-  //get all the likes for each media 
-const allLikes = document.querySelectorAll(".article_media_container_card_likes");
-console.log(allLikes);
-const allLikesArray = Array.from(allLikes);
-console.log(allLikesArray);
-const allLikesArray2 = allLikesArray.map((like) => {
-  return like.textContent;
-});
-console.log(allLikesArray2);
-// sum the likes for each photographers 
+  //get all the likes for each media
+  const allLikes = document.querySelectorAll(
+    ".article_media_container_card_likes"
+  );
+  const allLikesArray = Array.from(allLikes);
+  const allLikesArray2 = allLikesArray.map((like) => {
+    return like.textContent;
+  });
 
-    const allLikesArray3 = allLikesArray2.reduce((acc, current) => {
-      return acc + parseInt(current);
-    }, 0);
-    console.log(allLikesArray3);
+  // sum the likes for each photographers
+  const allLikesArray3 = allLikesArray2.reduce((acc, current) => {
+    return acc + parseInt(current);
+  }, 0);
 
-// aside total likes and price WORKS!
-
-const div6 = document.createElement("aside");
-div6.className = "photographer_aside";
-div6.innerHTML = /*html*/ `
+  // aside total likes and price 
+  const div6 = document.createElement("aside");
+  div6.className = "photographer_aside";
+  div6.innerHTML = /*html*/ `
 <div class="photographer_aside_total">
   <p class="photographer_aside_total_likes"> ${allLikesArray3}  </p>
   <p class="photographer_aside_total_price"> ${photographer.price} €/ jour </p>
 </div>  
 `;
-$page.appendChild(div6);
-const likes = document.querySelector(".photographer_aside_total_likes");
-likes.setAttribute("aria-label", "likes");
-const aside = document.querySelector(".photographer_aside");
-aside.setAttribute("aria-label", "aside");
-aside.setAttribute("role", "complementary");
+  $page.appendChild(div6);
+  const likes = document.querySelector(".photographer_aside_total_likes");
+  likes.setAttribute("aria-label", "likes");
+  const aside = document.querySelector(".photographer_aside");
+  aside.setAttribute("aria-label", "aside");
+  aside.setAttribute("role", "complementary");
 }

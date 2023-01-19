@@ -296,13 +296,13 @@ form input {
   height: 100px;
   align-self: center;
   justify-self: center;
-  border-color:#fafafa
+  border-color: #fafafa;
 }
 .lightbox__title {
   font-size: 25px;
   color: rgb(151, 12, 12);
   align-self: flex-start;
-  border-color:#fafafa
+  border-color: #fafafa;
 }
 .lightbox__prev {
   grid-area: back;
@@ -314,7 +314,7 @@ form input {
   height: 100px;
   align-self: center;
   justify-self: center;
-  border-color:#fafafa;
+  border-color: #fafafa;
 }
 .lightbox__media__container {
   grid-area: image;
@@ -323,7 +323,7 @@ form input {
   height: 90%;
   display: flex;
   justify-content: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -341,11 +341,10 @@ form input {
   margin: 0;
 }
 
-
-
 .fa-chevron-right,
-.fa-chevron-left, .material-icons {
-  font-size: 50px!important;
+.fa-chevron-left,
+.material-icons {
+  font-size: 50px !important;
   color: rgb(151, 12, 12);
   cursor: pointer;
 }

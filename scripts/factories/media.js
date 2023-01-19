@@ -4,21 +4,25 @@
  * @property {String} photographerName
  * @property {Number} id
  */
-function mediaFactory(data, photographerName){
+function mediaFactory(data, photographerName) {
   photographerName = photographerName.split(" ")[0];
 
-const { image, video, likes, id, photographerId, title } = data;
-const picture = `/assets/media/${photographerName}/${image||video}`;
-const action = {
-  photographerId,
-  photographerName,
-  id
-};
-const templateMedia = /*html*/ `
+  const { image, video, likes, id, photographerId, title } = data;
+  const picture = `/assets/media/${photographerName}/${image || video}`;
+  const action = {
+    photographerId,
+    photographerName,
+    id,
+  };
+  const templateMedia = /*html*/ `
 <article class="article_media" title= "photographie de ${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
-      ${image ? templateImage(picture, title, action) : templateVideo(picture, action)}
+      ${
+        image
+          ? templateImage(picture, title, action)
+          : templateVideo(picture, action)
+      }
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
         <h3 class= "article_media_container_card_likes"  
@@ -29,13 +33,15 @@ const templateMedia = /*html*/ `
   </div>
 </article>
 `;
-return templateMedia;
+  return templateMedia;
 }
 
-function templateVideo(videoName, action){
+function templateVideo(videoName, action) {
   return /*html*/ `
-  <video class="article_media_container_card_img" controls ${openModale(action)}>
-     <source src="${videoName}" type="video/mp4">
+  <video class="article_media_container_card_img" controls ${openModale(
+    action
+  )}>
+    <source src="${videoName}" type="video/mp4">
   </video>
   `;
 }
@@ -47,9 +53,9 @@ function templateVideo(videoName, action){
  * @param   {String}  title
  * @param   {action}  [action]
  *
- * @return  {String} 
+ * @return  {String}
  */
-function templateImage(picture, title, action){
+function templateImage(picture, title, action) {
   return /*html*/ `
   <img 
     src="${picture}"
@@ -57,7 +63,7 @@ function templateImage(picture, title, action){
     class="article_media_container_card_img"
     ${openModale(action)}
   />
-  `
+  `;
 }
 
 /**
@@ -67,15 +73,15 @@ function templateImage(picture, title, action){
  *
  * @return  {String}
  */
-function openModale(action){
+function openModale(action) {
   if (!action) return "";
   return `onclick="displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}')"`;
 }
 
-window.incrementLike = function (target){
+window.incrementLike = function (target) {
   let likes = parseInt(target.innerText);
   let increment = false;
-  if (target.classList.contains("isLiked")){
+  if (target.classList.contains("isLiked")) {
     target.innerText = likes - 1;
     target.classList.remove("isLiked");
     target.setAttribute("aria-pressed", "false");
@@ -88,8 +94,6 @@ window.incrementLike = function (target){
   likes = document.querySelector(".photographer_aside_total_likes");
   const likesNumber = parseInt(likes.textContent);
   likes.textContent = increment ? likesNumber + 1 : likesNumber - 1;
-}
+};
 
-export {mediaFactory, templateImage}
-
-
+export { mediaFactory, templateImage };
