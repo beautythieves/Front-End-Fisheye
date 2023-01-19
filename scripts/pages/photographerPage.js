@@ -17,18 +17,32 @@ async function displayPhotographer(photographer, media) {
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
 
-  // add link to index page on the logo Fisheye in the header
+  // add link to index page on the logo Fisheye in the header when there is a click on the logo
   const logo = document.querySelector(".logo");
   logo.onclick = function () {
     window.location.hash = "";
     logo.setAttribute("href", "#");
-    logo.setAttribute = ("aria-label", "Accueil");
-    logo.setAttribute = ("title", "Accueil");
-    logo.setAttribute = ("alt", "page d'Accueil");
+    logo.setAttribute("aria-label", "Accueil");
+    logo.setAttribute("title", "Accueil");
+    logo.setAttribute("alt", "page d'Accueil");
     logo.addEventListener("mouseover", function () {
       logo.style.cursor = "pointer";
     });
   };
+
+  // /* keyboard accessibility logo */
+  // // logo is the first element focusable
+  // logo.setAttribute("tabindex", "0");
+  // console.log(logo);
+  // logo.focus();
+
+  // // when focus on logo, press enter to go to index page
+  // logo.addEventListener("keydown", function (e) {
+  //   if (e.key === "Enter") {
+  //     window.location.hash = "";
+  //   }
+  // });
+  // /*end keyboard accessibility logo */
 
   // Display the data on the page
   const photographerArticle = document.createElement("article");
@@ -99,6 +113,45 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
+  /* keyboard navigation */
+
+  // // create an array of all media elements
+  // const mediaElements = document.querySelectorAll('.article_media_container_card');
+
+  // // set the first media element to be focusable
+  // mediaElements[0].setAttribute("tabindex", "0");
+  // mediaElements[0].focus();
+
+  // // loop through all media elements and add event listeners
+  // mediaElements.forEach((media, index) => {
+  //   // when tabbing to a media element, set the next element to be focusable
+  //   media.addEventListener("focus", () => {
+  //     mediaElements[index + 1] ? mediaElements[index + 1].setAttribute("tabindex", "0") : mediaElements[0].setAttribute("tabindex", "0");
+  //   });
+  //   // when leaving a media element, set the next element to be not focusable
+  //   media.addEventListener("blur", () => {
+  //     mediaElements[index + 1] ? mediaElements[index + 1].setAttribute("tabindex", "-1") : mediaElements[0].setAttribute("tabindex", "-1");
+  //   });
+  // });
+  // //set like to be focusabel with tab key
+  // const like = document.querySelectorAll(".article_media_container_card_like");
+  // like.forEach((like) => {
+  //   like.setAttribute("tabindex", "0");
+  // });
+
+  // //get the video media element
+  //   const medias = document.querySelectorAll("article_media_container_card_image");
+  //   const nextMedia = medias.nextElementSibling;
+  //   // set tabindex property on next media element
+  //   nextMedia.setAttribute("tabindex", "-1");
+  //   // add event listner on video media element
+  //   medias.addEventListener("keydown", function (event) {
+  //     if (event.key === "Tab") {
+  //       event.preventDefault();
+  //       nextMedia.focus();
+  //     }
+  //   });
+
   // sort images by date, title or likes
   function sortMedia() {
     const select = document.querySelector("#sortBy");
@@ -142,7 +195,7 @@ async function displayPhotographer(photographer, media) {
     return acc + parseInt(current);
   }, 0);
 
-  // aside total likes and price 
+  // aside total likes and price
   const div6 = document.createElement("aside");
   div6.className = "photographer_aside";
   div6.innerHTML = /*html*/ `

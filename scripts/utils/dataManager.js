@@ -40,9 +40,6 @@ async function getPhotographers() {
   if (!data) {
     await getAllData();
   }
-
-  console.table(data);
-
   return data.photographers;
 }
 

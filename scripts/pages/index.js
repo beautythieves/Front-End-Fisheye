@@ -25,10 +25,8 @@ async function displayData(photographers) {
   const photographersSection = document.createElement("div");
   photographersSection.className = "photographer_section";
   $page.appendChild(photographersSection);
-// explications des 3 lignes?
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
-    // console.log(photographerModel.pagePath, photographerModel.templateCard,"!!!!");
     const $cardWithLink = 
     addLink(photographerModel.pagePath, photographerModel.templateCard);
     photographersSection.appendChild($cardWithLink);

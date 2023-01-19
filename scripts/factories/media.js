@@ -1,3 +1,4 @@
+
 /**
  * @typedef {Object} action
  * @property {Number} photographerId

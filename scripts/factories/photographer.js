@@ -2,10 +2,8 @@ function photographerFactory(data) {
   const { name, portrait, city, country, price, id, tagline } = data;
 
   const picture = `assets/photographers/${portrait}`;
-  console.log(picture);
-  // lien vers la page photographer
+  // link to the photographer page
   const pagePath = "#photographer/" + id;
-  console.log(pagePath);
   const templateCard = /*html*/ `
         <article class="article" title= "photographies de ${name}">
             <img src="${picture}" alt="portrait de ${name}"  class="article_cover">
