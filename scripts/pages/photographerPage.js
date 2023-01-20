@@ -3,7 +3,6 @@ import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import { exposeInWindow } from "../utils/lightbox.js";
-
 exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
 
 export default async function showPhotographerPage(id) {
@@ -30,19 +29,7 @@ async function displayPhotographer(photographer, media) {
     });
   };
 
-  // /* keyboard accessibility logo */
-  // // logo is the first element focusable
-  // logo.setAttribute("tabindex", "0");
-  // console.log(logo);
-  // logo.focus();
 
-  // // when focus on logo, press enter to go to index page
-  // logo.addEventListener("keydown", function (e) {
-  //   if (e.key === "Enter") {
-  //     window.location.hash = "";
-  //   }
-  // });
-  // /*end keyboard accessibility logo */
 
   // Display the data on the page
   const photographerArticle = document.createElement("article");
@@ -113,44 +100,7 @@ async function displayPhotographer(photographer, media) {
   div5.innerHTML = content;
   $page.appendChild(div5);
 
-  /* keyboard navigation */
 
-  // // create an array of all media elements
-  // const mediaElements = document.querySelectorAll('.article_media_container_card');
-
-  // // set the first media element to be focusable
-  // mediaElements[0].setAttribute("tabindex", "0");
-  // mediaElements[0].focus();
-
-  // // loop through all media elements and add event listeners
-  // mediaElements.forEach((media, index) => {
-  //   // when tabbing to a media element, set the next element to be focusable
-  //   media.addEventListener("focus", () => {
-  //     mediaElements[index + 1] ? mediaElements[index + 1].setAttribute("tabindex", "0") : mediaElements[0].setAttribute("tabindex", "0");
-  //   });
-  //   // when leaving a media element, set the next element to be not focusable
-  //   media.addEventListener("blur", () => {
-  //     mediaElements[index + 1] ? mediaElements[index + 1].setAttribute("tabindex", "-1") : mediaElements[0].setAttribute("tabindex", "-1");
-  //   });
-  // });
-  // //set like to be focusabel with tab key
-  // const like = document.querySelectorAll(".article_media_container_card_like");
-  // like.forEach((like) => {
-  //   like.setAttribute("tabindex", "0");
-  // });
-
-  // //get the video media element
-  //   const medias = document.querySelectorAll("article_media_container_card_image");
-  //   const nextMedia = medias.nextElementSibling;
-  //   // set tabindex property on next media element
-  //   nextMedia.setAttribute("tabindex", "-1");
-  //   // add event listner on video media element
-  //   medias.addEventListener("keydown", function (event) {
-  //     if (event.key === "Tab") {
-  //       event.preventDefault();
-  //       nextMedia.focus();
-  //     }
-  //   });
 
   // sort images by date, title or likes
   function sortMedia() {
@@ -210,4 +160,62 @@ async function displayPhotographer(photographer, media) {
   const aside = document.querySelector(".photographer_aside");
   aside.setAttribute("aria-label", "aside");
   aside.setAttribute("role", "complementary");
+
+// KEYBOARD ACCESSIBILITY
+    /* keyboard accessibility logo */
+  // logo is the first element focusable
+  logo.setAttribute("tabindex", "0");
+  console.log(logo);
+  logo.focus();
+
+  // when focus on logo, press enter to go to index page
+  logo.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      window.location.hash = "";
+    }
+  });
+  /*end keyboard accessibility logo */
+// target the fisrt media displayed
+const firstMedia = document.querySelector(".article_media_container_card");
+console.log (firstMedia)
+firstMedia.setAttribute("tabindex", "0");
+
+ // when focus is on sortby, press tab to jump to the first media displayed
+ const select = document.querySelector("option");
+  select.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") {
+      firstMedia.focus();
+    }
+  });
+  // disbable focus on video controls
+  const video = document.querySelector("video");
+  video.setAttribute("tabindex", "-1");
+
+  // setting tabindex to 0 for all media
+  const allMedia = document.querySelectorAll(".article_media_container_card");
+  const allMediaArray = Array.from(allMedia);
+  allMediaArray.forEach((media) => {
+    media.setAttribute("tabindex", "0");
+  });
+
+ //setting tabindex to 0 for all likes
+  const allTheLikes = document.querySelectorAll(
+    ".article_media_container_card_likes"
+  );
+  const allTheLikesArray = Array.from(allTheLikes);
+  allTheLikesArray.forEach((like) => {
+    like.setAttribute("tabindex", "0");
+  });
+
+  // increment the likes when focus on the like and press enter
+  allTheLikesArray.forEach((like) => {
+    like.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        like.textContent++;
+      }
+    });
+  });
+  
+
+
 }

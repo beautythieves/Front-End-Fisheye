@@ -67,7 +67,7 @@ function closeModalLightbox() {
   sortBy.classList.remove("isHidden");
 }
 
-/*ACESSIBILITY*/
+/*ACCESSIBILITY*/
 /* close lightbox with esc key*/
 document.addEventListener("keyup", function (e) {
   if (e.key === "Escape") {
@@ -86,6 +86,7 @@ document.addEventListener("keyup", function (e) {
     prevMedia();
   } else return;
 });
+
 
 function nextMedia() {
   console.log("next");

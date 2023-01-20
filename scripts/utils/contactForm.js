@@ -112,6 +112,8 @@ export function displayModal() {
   document.querySelector("#main").setAttribute("aria-hidden", "true");
 
   trapFocus(mainDivModal);
+// select all the page except   the modal
+  
 }
 
 // close modal with escape key
