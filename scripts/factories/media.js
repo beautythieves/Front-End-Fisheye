@@ -78,7 +78,7 @@ function openModale(action) {
   if (!action) return "";
   return `onclick="displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}')"`;
 }
-
+// inrcrement the number of likes
 window.incrementLike = function (target) {
   let likes = parseInt(target.innerText);
   let increment = false;

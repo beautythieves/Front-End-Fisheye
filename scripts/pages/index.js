@@ -21,6 +21,7 @@ export default async function showIndexPage() {
  * @param  {} ;photographersSection.appendChild($cardWithLink
  * @param  {} ;}
  */
+// display the data on the page index
 async function displayData(photographers) {
   const photographersSection = document.createElement("div");
   photographersSection.className = "photographer_section";

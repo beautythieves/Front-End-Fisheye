@@ -3,8 +3,11 @@ import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import { exposeInWindow } from "../utils/lightbox.js";
-exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
 
+// import displayLightbox from "../utils/lightbox.js";
+
+exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
+console.log(exposeInWindow)
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
   const photographer = await getPhotographer(id);
@@ -193,6 +196,10 @@ firstMedia.setAttribute("tabindex", "0");
   allMediaArray.forEach((media) => {
     media.setAttribute("tabindex", "0");
   });
+  //  displaylightbox when focus on the media and press enter
+  
+
+  
 
  //setting tabindex to 0 for all likes
   const allTheLikes = document.querySelectorAll(
@@ -211,6 +218,11 @@ firstMedia.setAttribute("tabindex", "0");
       }
     });
   });
+  
+  
+
+  
+
   
 
 
