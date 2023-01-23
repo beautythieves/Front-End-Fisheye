@@ -43,7 +43,7 @@ async function getPhotographers() {
 
 async function getAllData() {
   try {
-    const response = await fetch("/data/photographers.json");
+    const response = await fetch("./data/photographers.json");
     data = await response.json();
   } catch (error) {
     console.log("Request Failed", error);
