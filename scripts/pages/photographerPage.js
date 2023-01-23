@@ -16,7 +16,7 @@ async function displayPhotographer(photographer, media) {
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
 
-  // add link to index page on the logo Fisheye in the header when there is a click on the logo
+  // add clickable link to index page on the logo Fisheye
   const logo = document.querySelector(".logo");
   logo.onclick = function () {
     window.location.hash = "";
@@ -28,8 +28,6 @@ async function displayPhotographer(photographer, media) {
       logo.style.cursor = "pointer";
     });
   };
-
-
 
   // Display the data on the page
   const photographerArticle = document.createElement("article");
@@ -99,8 +97,6 @@ async function displayPhotographer(photographer, media) {
   }
   div5.innerHTML = content;
   $page.appendChild(div5);
-
-
 
   // sort images by date, title or likes
   function sortMedia() {

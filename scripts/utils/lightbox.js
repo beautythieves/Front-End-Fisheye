@@ -18,6 +18,7 @@ async function displayLightBox(photographerId, id, photographer) {
     }
   }
   // add ishhidden to aside, .photographer_media, header, container_sortBy article
+  //in order to hide them when the lightbox is displayed
   const aside = document.querySelector(".photographer_aside");
   aside.classList.add("isHidden");
   const photographerMedia = document.querySelector(".photographer_media");

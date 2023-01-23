@@ -1,3 +1,5 @@
+// Description: Contact form
+
 export function displayModal() {
   const mainDivModal = document.createElement("div");
   mainDivModal.id = "contact_modal";
@@ -5,7 +7,7 @@ export function displayModal() {
   mainDivModal.setAttribute("aria-modal", "true");
   mainDivModal.setAttribute("aria-labelledby", "contact_modal_title");
   document.body.appendChild(mainDivModal);
-
+// fix the position of the modal
   const divModal = document.createElement("div");
   divModal.className = "modal";
   divModal.style.position = "absolute";
@@ -107,12 +109,11 @@ export function displayModal() {
 
   // focus ont the first field of the form
   document.querySelector("#contact_modal").querySelector("input").focus();
-  // ACCESSIBILITE
+  // ACCESSIBILITY
   //.hide the rest of the  document
   document.querySelector("#main").setAttribute("aria-hidden", "true");
 
   trapFocus(mainDivModal);
-// select all the page except   the modal
   
 }
 

@@ -7,9 +7,7 @@
  * @property {String} tagline
  * @property {Number} price
  * @property {String} portrait l'image du photographe 
- 
-//explication ligne 12?
- * @typedef {Array.<Photographer>} PhotographerList
+  * @typedef {Array.<Photographer>} PhotographerList
  * 
  * @typedef {Object} Media
  * @property {Number} id du media
