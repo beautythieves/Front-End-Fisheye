@@ -21,6 +21,12 @@ h1 {
     height: 50px;
     margin-left: 100px;
 }
+/* logo hover effect */
+.logo:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    cursor: pointer;
+}
 
 .photographer_section {
     display: grid;
@@ -46,16 +52,20 @@ h1 {
     height: 200px;
     width: 200px;
 }
-
-/* ajout de régle pour que l'image des photographes
-gardent le même ratio */
+/* hover effect for photographer section */
+.photographer_section article:hover {
+    transform: scale(1.1);
+    transition: 0.9s;
+    cursor: pointer;
+}
+/* add rules in order to keep the ratio */
 .article_cover {
    object-fit: cover;
    border-radius: 50%;
    max-width: 100%;
    height: auto;
 }
-/*sur la page photographer, image id du photographe*/
+
 .photographer_Id{
     height: 300px;
     width: 300px;
@@ -63,7 +73,7 @@ gardent le même ratio */
     object-fit: cover;
     margin: 0 auto;
 }
-/* text deco none pour les liens */
+/* text deco none for the links */
 .link_photographers {
     text-decoration: none;
 }
@@ -72,7 +82,7 @@ gardent le même ratio */
     font-size: 36px;
     margin: 0px;
 }
-/* ajout de règles pour modifier la localisation des photgraphes*/
+/* modify localisation*/
 .article_localisation {
     display: flex;
     flex-direction: column;
@@ -85,7 +95,7 @@ gardent le même ratio */
     margin: auto;
     font-size: 10px;
 }
-/* modif pour correspondre au design */
+/* modify in order to respect te design given */
 .article_prix {
     color: #757575;
     font-size: 9px;
