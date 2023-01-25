@@ -1,4 +1,4 @@
-import { $page } from "../app.js";
+import { $page } from  "../app.js";
 import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
@@ -197,7 +197,14 @@ firstMedia.setAttribute("tabindex", "0");
     media.setAttribute("tabindex", "0");
   });
   //  displaylightbox when focus on the media and press enter
-  
+  // allMediaArray.forEach((media) => {
+  //   media.addEventListener("keydown", function (e) {
+  //     if (e.key === "Enter") {
+  //       displayLightbox(media);
+  //     }
+  //   }); 
+  // });
+    
 
   
 

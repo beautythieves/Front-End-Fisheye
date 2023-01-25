@@ -16,6 +16,7 @@ function mediaFactory(data, photographerName) {
     id,
   };
   const templateMedia = /*html*/ `
+  <a onkeypress="displayLightBox(${photographerId}, ${id}, '${photographerName}')">
 <article class="article_media" title= "photographie de ${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
@@ -33,6 +34,7 @@ function mediaFactory(data, photographerName) {
     </div>
   </div>
 </article>
+</a>
 `;
   return templateMedia;
 }
@@ -59,7 +61,7 @@ function templateVideo(videoName, action) {
 function templateImage(picture, title, action) {
   return /*html*/ `
   <img 
-    src="${picture}"
+    src=".${picture}"
     alt="photo de ${title}"
     class="article_media_container_card_img"
     ${openModale(action)}

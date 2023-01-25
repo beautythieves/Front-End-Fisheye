@@ -1,5 +1,7 @@
+
+
 import { $page } from "../app.js";
-import { filteredMedia, serverAddress } from "../utils/dataManager.js";
+import { filteredMedia } from "../utils/dataManager.js";
 let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
 async function displayLightBox(photographerId, id, photographer) {
   try {
@@ -109,7 +111,7 @@ function prevMedia() {
 
 function mediaInModal() {
   const media = allmedias[currentMediaIndex];
-  const src = `${serverAddress}/assets/media/${photographerName}/${
+  const src = `./assets/media/${photographerName}/${
     media.image || media.video
   }`;
   const altText = media.title;

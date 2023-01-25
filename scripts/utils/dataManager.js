@@ -27,7 +27,6 @@ let data;
  */
 let activeFilter = "date";
 
-const serverAddress = "http://localhost:5500";
 
 /**
  * permet d'avoir la liste des photographes
@@ -98,7 +97,6 @@ async function filteredMedia(photographerId) {
 }
 
 export {
-  serverAddress,
   getAllData,
   getPhotographers,
   filteredMedia,
