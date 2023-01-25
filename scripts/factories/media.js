@@ -9,7 +9,7 @@ function mediaFactory(data, photographerName) {
   photographerName = photographerName.split(" ")[0];
 
   const { image, video, likes, id, photographerId, title } = data;
-  const picture = `/assets/media/${photographerName}/${image || video}`;
+  const picture = `./assets/media/${photographerName}/${image || video}`;
   const action = {
     photographerId,
     photographerName,
@@ -61,7 +61,7 @@ function templateVideo(videoName, action) {
 function templateImage(picture, title, action) {
   return /*html*/ `
   <img 
-    src=".${picture}"
+    src="${picture}"
     alt="photo de ${title}"
     class="article_media_container_card_img"
     ${openModale(action)}
