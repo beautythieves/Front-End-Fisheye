@@ -7,7 +7,7 @@ export function displayModal() {
   mainDivModal.setAttribute("aria-modal", "true");
   mainDivModal.setAttribute("aria-labelledby", "contact_modal_title");
   document.body.appendChild(mainDivModal);
-// fix the position of the modal
+  // fix the position of the modal
   const divModal = document.createElement("div");
   divModal.className = "modal";
   divModal.style.position = "absolute";
@@ -114,7 +114,6 @@ export function displayModal() {
   document.querySelector("#main").setAttribute("aria-hidden", "true");
 
   trapFocus(mainDivModal);
-  
 }
 
 // close modal with escape key
@@ -134,7 +133,6 @@ function trapFocus(element) {
   const focusableEls = document.querySelectorAll(
     "input, textarea,.send_button"
   );
-  console.log(focusableEls);
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
   const KEYCODE_TAB = 9;

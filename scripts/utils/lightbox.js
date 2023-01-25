@@ -1,5 +1,4 @@
-
-
+// this file is used to display the lightbox 
 import { $page } from "../app.js";
 import { filteredMedia } from "../utils/dataManager.js";
 let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
@@ -92,7 +91,6 @@ document.addEventListener("keyup", function (e) {
 
 
 function nextMedia() {
-  console.log("next");
   currentMediaIndex++;
   if (currentMediaIndex >= allmedias.length) {
     currentMediaIndex = 0;
@@ -101,7 +99,6 @@ function nextMedia() {
 }
 
 function prevMedia() {
-  console.log("prev");
   currentMediaIndex--;
   if (currentMediaIndex < 0) {
     currentMediaIndex = allmedias.length - 1;

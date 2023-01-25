@@ -5,6 +5,7 @@
  * @property {String} photographerName
  * @property {Number} id
  */
+// function to create the media template
 function mediaFactory(data, photographerName) {
   photographerName = photographerName.split(" ")[0];
 
@@ -38,7 +39,7 @@ function mediaFactory(data, photographerName) {
 `;
   return templateMedia;
 }
-
+// template for the video
 function templateVideo(videoName, action) {
   return /*html*/ `
   <video class="article_media_container_card_img" controls ${openModale(
@@ -58,6 +59,7 @@ function templateVideo(videoName, action) {
  *
  * @return  {String}
  */
+// template for the image
 function templateImage(picture, title, action) {
   return /*html*/ `
   <img 

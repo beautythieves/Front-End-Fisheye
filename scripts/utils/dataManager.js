@@ -27,9 +27,8 @@ let data;
  */
 let activeFilter = "date";
 
-
 /**
- * permet d'avoir la liste des photographes
+ *
  *
  * @return  {Promise.<PhotographerList}  [return description]
  */
@@ -96,9 +95,4 @@ async function filteredMedia(photographerId) {
   }
 }
 
-export {
-  getAllData,
-  getPhotographers,
-  filteredMedia,
-  getPhotographer,
-};
+export { getAllData, getPhotographers, filteredMedia, getPhotographer };

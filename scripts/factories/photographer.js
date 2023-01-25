@@ -1,3 +1,4 @@
+// function to create the photographer template
 function photographerFactory(data) {
   const { name, portrait, city, country, price, id, tagline } = data;
 

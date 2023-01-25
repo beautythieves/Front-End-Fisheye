@@ -6,7 +6,7 @@ import {getPhotographers} from "../utils/dataManager.js";
  * @param  {} ;displayData(photographers
  */
 export default async function showIndexPage() {
-  // Récupère les datas des photographes
+  // get the data from the json file
   const photographers  = await getPhotographers();
   displayData(photographers);
 }

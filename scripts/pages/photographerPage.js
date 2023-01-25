@@ -4,10 +4,8 @@ import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import { exposeInWindow } from "../utils/lightbox.js";
 
-// import displayLightbox from "../utils/lightbox.js";
 
 exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
-console.log(exposeInWindow)
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
   const photographer = await getPhotographer(id);
@@ -106,7 +104,6 @@ async function displayPhotographer(photographer, media) {
     const select = document.querySelector("#sortBy");
     select.addEventListener("change", function () {
       const value = select.value;
-      console.log(value);
       if (value === "date") {
         media.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
@@ -120,7 +117,6 @@ async function displayPhotographer(photographer, media) {
           return b.likes - a.likes;
         });
       }
-      console.log(media);
       div5.innerHTML = "";
       for (const mediaCard of media) {
         div5.innerHTML += mediaFactory(mediaCard, photographer.name);
@@ -164,7 +160,6 @@ async function displayPhotographer(photographer, media) {
     /* keyboard accessibility logo */
   // logo is the first element focusable
   logo.setAttribute("tabindex", "0");
-  console.log(logo);
   logo.focus();
 
   // when focus on logo, press enter to go to index page
@@ -174,9 +169,9 @@ async function displayPhotographer(photographer, media) {
     }
   });
   /*end keyboard accessibility logo */
+
 // target the fisrt media displayed
 const firstMedia = document.querySelector(".article_media_container_card");
-console.log (firstMedia)
 firstMedia.setAttribute("tabindex", "0");
 
  // when focus is on sortby, press tab to jump to the first media displayed
@@ -196,18 +191,7 @@ firstMedia.setAttribute("tabindex", "0");
   allMediaArray.forEach((media) => {
     media.setAttribute("tabindex", "0");
   });
-  //  displaylightbox when focus on the media and press enter
-  // allMediaArray.forEach((media) => {
-  //   media.addEventListener("keydown", function (e) {
-  //     if (e.key === "Enter") {
-  //       displayLightbox(media);
-  //     }
-  //   }); 
-  // });
-    
-
-  
-
+ 
  //setting tabindex to 0 for all likes
   const allTheLikes = document.querySelectorAll(
     ".article_media_container_card_likes"
