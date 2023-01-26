@@ -30,7 +30,6 @@ function mediaFactory(data, photographerName) {
         <h2 class= "article_media_container_card_title">${title}</h2>
         <h3 class= "article_media_container_card_likes"  
         onclick="incrementLike(this)" aria-label="j'aime">${likes} </h3>
-      
       </div>
     </div>
   </div>
@@ -39,6 +38,13 @@ function mediaFactory(data, photographerName) {
 `;
   return templateMedia;
 }
+/**
+ * [templateVideo description]
+ * @param   {String}  videoName
+ * @param   {action}  [action]
+ * @return  {String}
+ * 
+ */
 // template for the video
 function templateVideo(videoName, action) {
   return /*html*/ `
