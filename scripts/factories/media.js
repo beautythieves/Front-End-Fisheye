@@ -17,7 +17,7 @@ function mediaFactory(data, photographerName) {
     id,
   };
   const templateMedia = /*html*/ `
-  <a onkeypress="displayLightBox(${photographerId}, ${id}, '${photographerName}')">
+  <a onkeydown="if (event.keyCode === 13) { displayLightBox(${photographerId}, ${id}, '${photographerName}'); }">
 <article class="article_media" title= "photographie de ${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
