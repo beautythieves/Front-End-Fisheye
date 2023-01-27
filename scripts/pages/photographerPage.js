@@ -1,10 +1,15 @@
-import { $page } from  "../app.js";
+import { $page } from "../app.js";
 import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import { exposeInWindow } from "../utils/lightbox.js";
 
-
+/**
+ * @description This function is used to display the photographer page
+ * @param  {number} id
+ *  @return {void}
+ *
+ */
 exposeInWindow(); //add functionnality in window DOM  like displayLightbox, closeLightbox, nextmedia, prevmedia
 export default async function showPhotographerPage(id) {
   const media = await filteredMedia(id);
@@ -12,7 +17,12 @@ export default async function showPhotographerPage(id) {
 
   displayPhotographer(photographer, media);
 }
-
+/**
+ * @description This function is used to display the photographer page
+ * @param  {photographer} photographer
+ * @param  {Array.<Media>} media
+ *
+ */
 async function displayPhotographer(photographer, media) {
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
@@ -156,8 +166,8 @@ async function displayPhotographer(photographer, media) {
   aside.setAttribute("aria-label", "aside");
   aside.setAttribute("role", "complementary");
 
-// KEYBOARD ACCESSIBILITY
-    /* keyboard accessibility logo */
+  // KEYBOARD ACCESSIBILITY
+  /* keyboard accessibility logo */
   // logo is the first element focusable
   logo.setAttribute("tabindex", "0");
   logo.focus();
@@ -170,12 +180,12 @@ async function displayPhotographer(photographer, media) {
   });
   /*end keyboard accessibility logo */
 
-// target the fisrt media displayed
-const firstMedia = document.querySelector(".article_media_container_card");
-firstMedia.setAttribute("tabindex", "0");
+  // target the fisrt media displayed
+  const firstMedia = document.querySelector(".article_media_container_card");
+  firstMedia.setAttribute("tabindex", "0");
 
- // when focus is on sortby, press tab to jump to the first media displayed
- const select = document.querySelector("option");
+  // when focus is on sortby, press tab to jump to the first media displayed
+  const select = document.querySelector("option");
   select.addEventListener("keydown", function (e) {
     if (e.key === "Tab") {
       firstMedia.focus();
@@ -191,8 +201,8 @@ firstMedia.setAttribute("tabindex", "0");
   allMediaArray.forEach((media) => {
     media.setAttribute("tabindex", "0");
   });
- 
- //setting tabindex to 0 for all likes
+
+  //setting tabindex to 0 for all likes
   const allTheLikes = document.querySelectorAll(
     ".article_media_container_card_likes"
   );
@@ -209,12 +219,4 @@ firstMedia.setAttribute("tabindex", "0");
       }
     });
   });
-  
-  
-
-  
-
-  
-
-
 }

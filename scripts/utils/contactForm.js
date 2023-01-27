@@ -1,5 +1,7 @@
-// Description: Contact form
-
+/**
+  * @fileoverview This file contains the functions to display the contact form
+  * @module utils/contactForm
+ */
 export function displayModal() {
   const mainDivModal = document.createElement("div");
   mainDivModal.id = "contact_modal";
@@ -122,12 +124,22 @@ document.addEventListener("keyup", function (e) {
     closeModal();
   } else return;
 });
-
+/**
+  * Close modal
+  * @param {event} e
+  * @returns {void}
+  * 
+ */
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.parentNode.removeChild(modal);
 }
-
+/**
+ * Trap focus in modal
+ * @param {HTMLElement} element
+ * @returns {void}
+ * 
+ */
 // focusable elements with tab and shift tab
 function trapFocus(element) {
   const focusableEls = document.querySelectorAll(
@@ -136,9 +148,15 @@ function trapFocus(element) {
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
   const KEYCODE_TAB = 9;
-
+/**
+ *  focus on the first element of the modal
+ * @param {event} e
+ * @returns {void}
+ * 
+ *
+ */
   element.addEventListener("keydown", function (e) {
-    if (e.key === "Tab" || e.keyCode === KEYCODE_TAB) {
+    if (e.key === "Tab" || e.key === KEYCODE_TAB) {
       if (e.shiftKey) {
         /* shift + tab */ if (document.activeElement === firstFocusableEl) {
           lastFocusableEl.focus();

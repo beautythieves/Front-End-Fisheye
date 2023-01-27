@@ -1,4 +1,9 @@
-// this file is used to display the lightbox 
+/**
+ * Displays a lightbox modal with the selected media
+ * @param   {Number}  photographerId
+ * @param   {Number}  id
+ * @param   {String}  photographer
+ */
 import { $page } from "../app.js";
 import { filteredMedia } from "../utils/dataManager.js";
 let $lightbox, allmedias, currentMediaIndex, $media, photographerName;
@@ -10,6 +15,7 @@ async function displayLightBox(photographerId, id, photographer) {
   }
 
   photographerName = photographer;
+  // get the index of the selected media
   let i;
   for (i = 0; i < allmedias.length; i++) {
     const media = allmedias[i];
@@ -31,8 +37,8 @@ async function displayLightBox(photographerId, id, photographer) {
   const sortBy = document.querySelector(".container_sortBy");
   sortBy.classList.add("isHidden");
 
+  // create the lightbox
   $lightbox = document.createElement("section");
-  
   $lightbox.className = "lightbox";
   $lightbox.innerHTML =
     /*html*/
@@ -124,7 +130,14 @@ function updateMedia() {
   if (!$media) $media = document.getElementById("mediaInModal");
   $media.innerHTML = mediaInModal();
 }
-
+/**
+ *  object which contains all the methods to expose to the window object
+ *  @property {function} displayLightBox - display the lightbox
+ * @property {function} closeModalLightbox - close the lightbox
+ * @property {function} nextMedia - go to the next media
+ * @property {function} prevMedia - go to the previous media
+ * 
+ */
 const methodsToExpose = {
   displayLightBox,
   closeModalLightbox,
@@ -133,11 +146,12 @@ const methodsToExpose = {
 };
 
 /**
- * [exposeInWindow description]
- *
- * @param   {Array.<String>}  methodsToExpose  [methodsToExpose description]
- *
- * @return  {void}                   [return description]
+ * Expose the specified methods to the window object
+ * @example window.displayLightBox(1, 1, "Ellie-Rose Wilkens")
+ * @example window.closeModalLightbox()
+ * @param {string} methodName - the name of the method to expose
+ * 
+ * @returns {void}
  */
 
 function exposeInWindow() {
@@ -148,4 +162,3 @@ function exposeInWindow() {
 
 export { exposeInWindow };
 
-// export {displayLightBox};

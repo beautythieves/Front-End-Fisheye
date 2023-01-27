@@ -1,16 +1,15 @@
 /**
  * @typedef {Object} Photographer
- * @property {String} name le nom du photographe ex:" "Mimi Keel"
+ * @property {String} name name of photographer
  * @property {Number} id 
  * @property {String} city 
  * @property {String} country
  * @property {String} tagline
  * @property {Number} price
- * @property {String} portrait l'image du photographe 
+ * @property {String} portrait image of photographer 
   * @typedef {Array.<Photographer>} PhotographerList
- * 
  * @typedef {Object} Media
- * @property {Number} id du media
+ * @property {Number} id of the media
  * @property {Number} photographerId
  * @property {String} title
  * @property {String} image
@@ -23,14 +22,17 @@
 
 let data;
 /**
- * @type {"date"| "title"| "likes"}
+ * @type {String}
+ * @description active filter
+ *
  */
 let activeFilter = "date";
 
 /**
  *
+ * @param {String} filter
+ * @description set the active filter
  *
- * @return  {Promise.<PhotographerList}  [return description]
  */
 async function getPhotographers() {
   if (!data) {
@@ -39,6 +41,13 @@ async function getPhotographers() {
   return data.photographers;
 }
 
+/**
+  * @description get all data from json file
+  * @return {Promise.<Object>}
+  * @property {PhotographerList} photographers
+  * @property {Array.<Media>} media
+  
+ */
 async function getAllData() {
   try {
     const response = await fetch("./data/photographers.json");
@@ -51,9 +60,9 @@ async function getAllData() {
 /**
  * [getMediaFromPhotographer description]
  *
- * @param   {Number}  id  l'id du photographe
+ * @param   {Number}  id  [id description]
  *
- * @return  {Array.<Media>}      [return description]
+ * @return  {Array.<Media>}       [return description]
  */
 async function getMediaFromPhotographer(photographerId) {
   if (!data) {
@@ -65,6 +74,12 @@ async function getMediaFromPhotographer(photographerId) {
   return photographersMedia ?? [];
 }
 
+/**
+ * [getPhotographer description]
+ * @param   {Number}  id  [id description]
+ * @return  {Photographer}       [return description]
+ *
+ */
 async function getPhotographer(id) {
   if (!data) {
     await getAllData();
@@ -75,10 +90,10 @@ async function getPhotographer(id) {
 /**
  * [async description]
  *
+ * @param   {String}  filter  [filter description]
  * @param   {Number}  photographerId
- *
- *
- * @return   {Promise.<Array.<Media>>}
+ * @return  {Promise.<Array.<Media>>}       [return description]
+
  */
 async function filteredMedia(photographerId) {
   const data = await getMediaFromPhotographer(photographerId);

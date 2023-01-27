@@ -1,4 +1,21 @@
 // function to create the photographer template
+/**
+ * @description function to create the photographer template
+ * @param   {Object}  data
+ * @property {String}  name
+ * @property {String}  picture
+ * @property {String}  pagePath
+ * @property {String}  templateCard
+ * @property {String}  id
+ * @property {String}  city
+ * @property {String}  country
+ * @property {String}  tagline
+ * @property {String}  price
+ * @property {String}  portrait
+ * @return {Object}
+ * 
+ * 
+ */
 function photographerFactory(data) {
   const { name, portrait, city, country, price, id, tagline } = data;
 

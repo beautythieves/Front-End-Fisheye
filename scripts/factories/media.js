@@ -5,7 +5,14 @@
  * @property {String} photographerName
  * @property {Number} id
  */
-// function to create the media template
+/**
+ * create the media template
+ *
+ * @param   {Obect}  data              - the data of the media
+ * @param   {String}  photographerName  
+ *
+ * @return  {String}                   - the template of the media
+ */
 function mediaFactory(data, photographerName) {
   photographerName = photographerName.split(" ")[0];
 
@@ -39,7 +46,7 @@ function mediaFactory(data, photographerName) {
   return templateMedia;
 }
 /**
- * [templateVideo description]
+ * @description template for the video
  * @param   {String}  videoName
  * @param   {action}  [action]
  * @return  {String}
@@ -57,7 +64,7 @@ function templateVideo(videoName, action) {
 }
 
 /**
- * [templateImage description]
+ * @description template for the image
  *
  * @param   {String}  picture
  * @param   {String}  title
@@ -78,17 +85,23 @@ function templateImage(picture, title, action) {
 }
 
 /**
- * [openModale description]
- *
+ * @description open the modale
+ *  
  * @param   {action}  [action]
- *
- * @return  {String}
+ *  
+ * @return  {String}  - the onclick function
  */
 function openModale(action) {
   if (!action) return "";
   return `onclick="displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}')"`;
 }
-// inrcrement the number of likes
+/**
+ * @description increment the likes
+ *
+ * @param  {HTMLElement}  target
+ *  
+ *@return  {void}
+ */
 window.incrementLike = function (target) {
   let likes = parseInt(target.innerText);
   let increment = false;
