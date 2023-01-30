@@ -1,24 +1,7 @@
 /**
- * @typedef {Object} Photographer
- * @property {String} name name of photographer
- * @property {Number} id 
- * @property {String} city 
- * @property {String} country
- * @property {String} tagline
- * @property {Number} price
- * @property {String} portrait image of photographer 
-  * @typedef {Array.<Photographer>} PhotographerList
- * @typedef {Object} Media
- * @property {Number} id of the media
- * @property {Number} photographerId
- * @property {String} title
- * @property {String} image
- * @property {String} video
- * @property {Number} likes
- * @property {String} date
- * @property {Number} price
-
-*/
+ * @type {Object}
+ * @description Data loaded from the JSON file
+ */
 
 let data;
 /**
@@ -77,8 +60,6 @@ async function getMediaFromPhotographer(photographerId) {
 /**
  * [getPhotographer description]
  * @param   {Number}  id  [id description]
- * @return  {Photographer}       [return description]
- *
  */
 async function getPhotographer(id) {
   if (!data) {

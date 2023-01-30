@@ -153,7 +153,6 @@ function trapFocus(element) {
  * @param {event} e
  * @returns {void}
  * 
- *
  */
   element.addEventListener("keydown", function (e) {
     if (e.key === "Tab" || e.key === KEYCODE_TAB) {

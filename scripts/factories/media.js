@@ -1,4 +1,3 @@
-
 /**
  * @typedef {Object} action
  * @property {Number} photographerId
@@ -7,15 +6,12 @@
  */
 /**
  * create the media template
- *
- * @param   {Obect}  data              - the data of the media
- * @param   {String}  photographerName  
- *
+ * @param   {Object}  data              - the data of the media
+ * @param   {String}  photographerName
  * @return  {String}                   - the template of the media
  */
 function mediaFactory(data, photographerName) {
   photographerName = photographerName.split(" ")[0];
-
   const { image, video, likes, id, photographerId, title } = data;
   const picture = `./assets/media/${photographerName}/${image || video}`;
   const action = {
@@ -50,7 +46,7 @@ function mediaFactory(data, photographerName) {
  * @param   {String}  videoName
  * @param   {action}  [action]
  * @return  {String}
- * 
+ *
  */
 // template for the video
 function templateVideo(videoName, action) {
@@ -86,9 +82,9 @@ function templateImage(picture, title, action) {
 
 /**
  * @description open the modale
- *  
+ *
  * @param   {action}  [action]
- *  
+ *
  * @return  {String}  - the onclick function
  */
 function openModale(action) {
@@ -99,7 +95,7 @@ function openModale(action) {
  * @description increment the likes
  *
  * @param  {HTMLElement}  target
- *  
+ *
  *@return  {void}
  */
 window.incrementLike = function (target) {
