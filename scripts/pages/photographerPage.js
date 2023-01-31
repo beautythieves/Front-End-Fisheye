@@ -3,7 +3,6 @@ import { filteredMedia, getPhotographer } from "../utils/dataManager.js";
 import { mediaFactory } from "../factories/media.js";
 import { displayModal } from "../utils/contactForm.js";
 import { exposeInWindow } from "../utils/lightbox.js";
-
 /**
  * @description This function is used to display the photographer page
  * @param  {number} id

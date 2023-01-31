@@ -43,7 +43,7 @@ async function displayLightBox(photographerId, id, photographer) {
   $lightbox.innerHTML =
     /*html*/
     `<div class="lightbox__container">                
-                <button class="lightbox__close" onclick="closeModalLightbox()"><i class="material-icons md-50">close</i>                </button>
+                <button class="lightbox__close" onclick="closeModalLightbox()"><i class="material-icons md-50">close</i></button>
                 <button class="lightbox__next" onclick="nextMedia()"><i class="fas fa-chevron-right"></i></button>
                 <button class="lightbox__prev" onclick ="prevMedia()"><i class ="fas fa-chevron-left"></i></button>
           <div class="lightbox__media__container" id="mediaInModal">

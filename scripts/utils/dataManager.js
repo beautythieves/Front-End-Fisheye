@@ -60,6 +60,7 @@ async function getMediaFromPhotographer(photographerId) {
 /**
  * [getPhotographer description]
  * @param   {Number}  id  [id description]
+
  */
 async function getPhotographer(id) {
   if (!data) {
@@ -82,7 +83,7 @@ async function filteredMedia(photographerId) {
     case "date":
       return data.sort((a, b) => new Date(b.date) - new Date(a.date));
     case "popularité":
-      return data.sort((a, b) => b.likes - a.likes); // trier par popularité
+      return data.sort((a, b) => b.likes - a.likes); 
     case "titre":
       return data.sort((a, b) => a.title.localeCompare(b.title));
 
