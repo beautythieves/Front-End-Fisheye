@@ -26,6 +26,9 @@ async function displayPhotographer(photographer, media) {
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
 
+ 
+
+
   // add clickable link to index page on the logo Fisheye
   const logo = document.querySelector(".logo");
   logo.onclick = function () {
@@ -34,6 +37,7 @@ async function displayPhotographer(photographer, media) {
     logo.setAttribute("aria-label", "Accueil");
     logo.setAttribute("title", "Accueil");
     logo.setAttribute("alt", "page d'Accueil");
+    logo.setAttribute("role", "link");
     logo.addEventListener("mouseover", function () {
       logo.style.cursor = "pointer";
     });
@@ -42,6 +46,8 @@ async function displayPhotographer(photographer, media) {
   // Display the data on the page
   const photographerArticle = document.createElement("article");
   photographerArticle.className = "photographer_article";
+  photographerArticle.setAttribute("aria-label", "photographer");
+  photographerArticle.setAttribute("role", "article");
   $page.appendChild(photographerArticle);
 
   const div1 = document.createElement("div");
@@ -77,6 +83,7 @@ async function displayPhotographer(photographer, media) {
   photographerArticle.appendChild(div3);
   const picId = document.createElement("img");
   picId.className = "photographer_Id";
+  picId.setAttribute("aria-label", "portrait de ${photographer.name}");
   div3.appendChild(picId);
   picId.src = `assets/photographers/${photographer.portrait}`;
   picId.alt = "portrait de ${photographer.name}";
@@ -89,7 +96,7 @@ async function displayPhotographer(photographer, media) {
   <div class="container_sortBy">
     <div class="container_sortBy_options">
       <label for="sortBy">Trier par</label>
-            <select id="sortBy" >
+            <select id="sortBy" aria-labelledby="sortBy" aria-label="choisissez une option pour trier le contenu" >
               <option value="date">Date</option>
               <option value="title">Titre</option>
               <option value="likes">Popularité</option>
@@ -167,9 +174,12 @@ async function displayPhotographer(photographer, media) {
 
   // KEYBOARD ACCESSIBILITY
   /* keyboard accessibility logo */
-  // logo is the first element focusable
-  logo.setAttribute("tabindex", "0");
-  logo.focus();
+  // logo is the first element focusable when the user open the page
+  const logoFish = document.querySelector(".logo");
+  logoFish.setAttribute("tabindex", "0");
+  logoFish.setAttribute("aria-label", "logo");
+  logoFish.focus();
+
 
   // when focus on logo, press enter to go to index page
   logo.addEventListener("keydown", function (e) {
@@ -179,43 +189,45 @@ async function displayPhotographer(photographer, media) {
   });
   /*end keyboard accessibility logo */
 
-  // target the fisrt media displayed
-  const firstMedia = document.querySelector(".article_media_container_card");
-  firstMedia.setAttribute("tabindex", "0");
+  
+/* set the like increment zone inside media to be focusable by changing tabindex*/
+  const likesIncrement = document.querySelectorAll(".article_media_container_card_likes");
+  for (let i = 0; i < likesIncrement.length; i++) {
+    likesIncrement[i].setAttribute("tabindex", "0");
+  }
 
-  // when focus is on sortby, press tab to jump to the first media displayed
-  const select = document.querySelector("option");
-  select.addEventListener("keydown", function (e) {
+  /* set the media tabindex to 0 to be focusable */
+  const mediaTabindex = document.querySelectorAll(".article_media_container_card");
+  for (let i = 0; i < mediaTabindex.length; i++) {
+    mediaTabindex[i].setAttribute("tabindex", "0");
+  } 
+
+  /* when focus is on sortBy, press tab to focus on the first media diplayed in the gallery*/
+  const sortBy = document.querySelector("#sortBy");
+  sortBy.addEventListener("keydown", function (e) {
     if (e.key === "Tab") {
-      firstMedia.focus();
+      mediaTabindex[0].focus();
     }
   });
-  // disbable focus on video controls
-  const video = document.querySelector("video");
-  video.setAttribute("tabindex", "-1");
 
-  // setting tabindex to 0 for all media
-  const allMedia = document.querySelectorAll(".article_media_container_card");
-  const allMediaArray = Array.from(allMedia);
-  allMediaArray.forEach((media) => {
-    media.setAttribute("tabindex", "0");
-  });
+  /* when focus is on incrementlike, press enter to increment the total of likes*/
+  
 
-  //setting tabindex to 0 for all likes
-  const allTheLikes = document.querySelectorAll(
-    ".article_media_container_card_likes"
-  );
-  const allTheLikesArray = Array.from(allTheLikes);
-  allTheLikesArray.forEach((like) => {
-    like.setAttribute("tabindex", "0");
-  });
 
-  // increment the likes when focus on the like and press enter
-  allTheLikesArray.forEach((like) => {
-    like.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        like.textContent++;
-      }
-    });
-  });
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

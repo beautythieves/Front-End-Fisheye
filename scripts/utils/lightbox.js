@@ -95,6 +95,24 @@ document.addEventListener("keyup", function (e) {
   } else return;
 });
 
+/*if the focus is on the right arrow button and the user press enter, go to next media*/
+document.addEventListener("keyup", function (e) {
+  if (e.key === "Enter") {
+    const $lightboxNext = document.querySelector(".lightbox__next");
+    if (document.activeElement === $lightboxNext) {
+      nextMedia();
+    }
+  } else return;
+});
+/*if the focus is on the left arrow button and the user press enter, go to previous media*/
+document.addEventListener("keyup", function (e) {
+  if (e.key === "Enter") {
+    const $lightboxPrev = document.querySelector(".lightbox__prev");
+    if (document.activeElement === $lightboxPrev) {
+      prevMedia();
+    }
+  } else return;
+});
 
 function nextMedia() {
   currentMediaIndex++;

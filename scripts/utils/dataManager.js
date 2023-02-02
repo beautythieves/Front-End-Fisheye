@@ -2,20 +2,16 @@
  * @type {Object}
  * @description Data loaded from the JSON file
  */
-
 let data;
 /**
  * @type {String}
  * @description active filter
- *
  */
 let activeFilter = "date";
 
 /**
- *
  * @param {String} filter
  * @description set the active filter
- *
  */
 async function getPhotographers() {
   if (!data) {
@@ -25,11 +21,10 @@ async function getPhotographers() {
 }
 
 /**
-  * @description get all data from json file
-  * @return {Promise.<Object>}
-  * @property {PhotographerList} photographers
-  * @property {Array.<Media>} media
-  
+ * @description get all data from json file
+ * @return {Promise.<Object>}
+ * @property {PhotographerList} photographers
+ * @property {Array.<Media>} media
  */
 async function getAllData() {
   try {
@@ -41,10 +36,7 @@ async function getAllData() {
 }
 
 /**
- * [getMediaFromPhotographer description]
- *
  * @param   {Number}  id  [id description]
- *
  * @return  {Array.<Media>}       [return description]
  */
 async function getMediaFromPhotographer(photographerId) {
@@ -58,9 +50,7 @@ async function getMediaFromPhotographer(photographerId) {
 }
 
 /**
- * [getPhotographer description]
  * @param   {Number}  id  [id description]
-
  */
 async function getPhotographer(id) {
   if (!data) {
@@ -70,12 +60,9 @@ async function getPhotographer(id) {
 }
 
 /**
- * [async description]
- *
  * @param   {String}  filter  [filter description]
  * @param   {Number}  photographerId
  * @return  {Promise.<Array.<Media>>}       [return description]
-
  */
 async function filteredMedia(photographerId) {
   const data = await getMediaFromPhotographer(photographerId);
@@ -83,7 +70,7 @@ async function filteredMedia(photographerId) {
     case "date":
       return data.sort((a, b) => new Date(b.date) - new Date(a.date));
     case "popularité":
-      return data.sort((a, b) => b.likes - a.likes); 
+      return data.sort((a, b) => b.likes - a.likes);
     case "titre":
       return data.sort((a, b) => a.title.localeCompare(b.title));
 

@@ -32,6 +32,7 @@ function mediaFactory(data, photographerName) {
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
         <h3 class= "article_media_container_card_likes"  
+        onkeydown="if (event.keyCode === 13) { incrementLike(this); }"
         onclick="incrementLike(this)" aria-label="j'aime">${likes} </h3>
       </div>
     </div>
@@ -51,7 +52,7 @@ function mediaFactory(data, photographerName) {
 // template for the video
 function templateVideo(videoName, action) {
   return /*html*/ `
-  <video class="article_media_container_card_img" controls ${openModale(
+  <video class="article_media_container_card_video" controls ${openModale(
     action
   )}>
     <source src="${videoName}" type="video/mp4">
