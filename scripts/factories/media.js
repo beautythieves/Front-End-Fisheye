@@ -21,7 +21,7 @@ function mediaFactory(data, photographerName) {
   };
   const templateMedia = /*html*/ `
   <a onkeydown="if (event.keyCode === 13) { displayLightBox(${photographerId}, ${id}, '${photographerName}'); }">
-<article class="article_media" title= "photographie de ${title}">
+<article class="article_media" title= "photographie de ${title}"aria-label="${image ? 'image of ' : 'video of '}${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card"  >
       ${
@@ -54,7 +54,7 @@ function templateVideo(videoName, action) {
   return /*html*/ `
   <video class="article_media_container_card_video" controls ${openModale(
     action
-  )}>
+  )} aria-label="video of ${action.title}">
     <source src="${videoName}" type="video/mp4">
   </video>
   `;
@@ -76,7 +76,9 @@ function templateImage(picture, title, action) {
     src="${picture}"
     alt="photo de ${title}"
     class="article_media_container_card_img"
+    aria-label="image of ${title}"
     ${openModale(action)}
+    role="img"
   />
   `;
 }

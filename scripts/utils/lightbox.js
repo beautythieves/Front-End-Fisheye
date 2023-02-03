@@ -50,6 +50,8 @@ async function displayLightBox(photographerId, id, photographer) {
             ${mediaInModal()}
           </div> 
       </div> `;
+      
+
 
   $page.appendChild($lightbox);
   // add aria-labels to buttons close, next, prev
@@ -89,7 +91,7 @@ document.addEventListener("keyup", function (e) {
   } else return;
 });
 /* go to previous media with left arrow key*/
-document.addEventListener("keyup", function (e) {
+document.addEventListener("keyup", function (e) { 
   if (e.key === "ArrowLeft") {
     prevMedia();
   } else return;
@@ -119,6 +121,12 @@ function nextMedia() {
   if (currentMediaIndex >= allmedias.length) {
     currentMediaIndex = 0;
   }
+  /*announce he media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
+  const media = allmedias[currentMediaIndex];
+  const title = media.title;
+  const announcement = new SpeechSynthesisUtterance(title);
+  speechSynthesis.speak(announcement);
+  document.querySelector("#mediaInModal").innerHTML = mediaInModal();
   updateMedia();
 }
 
@@ -127,6 +135,14 @@ function prevMedia() {
   if (currentMediaIndex < 0) {
     currentMediaIndex = allmedias.length - 1;
   }
+    /*announce he media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
+    const media = allmedias[currentMediaIndex];
+    const title = media.title;
+    const announcement = new SpeechSynthesisUtterance(title);
+    speechSynthesis.speak(announcement);
+  document.querySelector("#mediaInModal").innerHTML = mediaInModal();
+  
+
   updateMedia();
 }
 
