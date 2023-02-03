@@ -26,9 +26,6 @@ async function displayPhotographer(photographer, media) {
   //hide header h1 "nos photographes"
   document.querySelector("#h1").style.display = "none";
 
- 
-
-
   // add clickable link to index page on the logo Fisheye
   const logo = document.querySelector(".logo");
   logo.onclick = function () {
@@ -137,6 +134,7 @@ async function displayPhotographer(photographer, media) {
       for (const mediaCard of media) {
         div5.innerHTML += mediaFactory(mediaCard, photographer.name);
       }
+      // updateTab()
     });
   }
   let trier = document.querySelector("#container_sortBy");
@@ -180,7 +178,6 @@ async function displayPhotographer(photographer, media) {
   logoFish.setAttribute("aria-label", "logo");
   logoFish.focus();
 
-
   // when focus on logo, press enter to go to index page
   logo.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
@@ -188,46 +185,4 @@ async function displayPhotographer(photographer, media) {
     }
   });
   /*end keyboard accessibility logo */
-
-  
-/* set the like increment zone inside media to be focusable by changing tabindex*/
-  const likesIncrement = document.querySelectorAll(".article_media_container_card_likes");
-  for (let i = 0; i < likesIncrement.length; i++) {
-    likesIncrement[i].setAttribute("tabindex", "0");
-  }
-
-  /* set the media tabindex to 0 to be focusable */
-  const mediaTabindex = document.querySelectorAll(".article_media_container_card");
-  for (let i = 0; i < mediaTabindex.length; i++) {
-    mediaTabindex[i].setAttribute("tabindex", "0");
-  } 
-
-  /* when focus is on sortBy, press tab to focus on the first media diplayed in the gallery*/
-  const sortBy = document.querySelector("#sortBy");
-  sortBy.addEventListener("keydown", function (e) {
-    if (e.key === "Tab") {
-      mediaTabindex[0].focus();
-    }
-  });
-
-  /* when focus is on incrementlike, press enter to increment the total of likes*/
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

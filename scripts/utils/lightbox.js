@@ -121,7 +121,7 @@ function nextMedia() {
   if (currentMediaIndex >= allmedias.length) {
     currentMediaIndex = 0;
   }
-  /*announce he media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
+  /*announce the media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
   const media = allmedias[currentMediaIndex];
   const title = media.title;
   const announcement = new SpeechSynthesisUtterance(title);
@@ -135,13 +135,13 @@ function prevMedia() {
   if (currentMediaIndex < 0) {
     currentMediaIndex = allmedias.length - 1;
   }
-    /*announce he media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
+    /*announce the media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
     const media = allmedias[currentMediaIndex];
     const title = media.title;
     const announcement = new SpeechSynthesisUtterance(title);
     speechSynthesis.speak(announcement);
   document.querySelector("#mediaInModal").innerHTML = mediaInModal();
-  
+
 
   updateMedia();
 }

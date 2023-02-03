@@ -20,10 +20,10 @@ function mediaFactory(data, photographerName) {
     id,
   };
   const templateMedia = /*html*/ `
-  <a onkeydown="if (event.keyCode === 13) { displayLightBox(${photographerId}, ${id}, '${photographerName}'); }">
+
 <article class="article_media" title= "photographie de ${title}"aria-label="${image ? 'image of ' : 'video of '}${title}">
   <div class= "article_media_container">
-    <div class= "article_media_container_card"  >
+    <div class= "article_media_container_card" tabindex = "-1" >
       ${
         image
           ? templateImage(picture, title, action)
@@ -31,14 +31,13 @@ function mediaFactory(data, photographerName) {
       }
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
-        <h3 class= "article_media_container_card_likes"  
+        <h3 class= "article_media_container_card_likes"  tabindex="0" aria-pressed="false"
         onkeydown="if (event.keyCode === 13) { incrementLike(this); }"
         onclick="incrementLike(this)" aria-label="j'aime">${likes} </h3>
       </div>
     </div>
   </div>
 </article>
-</a>
 `;
   return templateMedia;
 }
@@ -54,7 +53,11 @@ function templateVideo(videoName, action) {
   return /*html*/ `
   <video class="article_media_container_card_video" controls ${openModale(
     action
-  )} aria-label="video of ${action.title}">
+  )} 
+  tabindex="0"
+  onkeydown="if (event.keyCode === 13) { displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}'); }"
+  aria-label="video of ${action.title}"
+  >
     <source src="${videoName}" type="video/mp4">
   </video>
   `;
@@ -62,7 +65,6 @@ function templateVideo(videoName, action) {
 
 /**
  * @description template for the image
- *
  * @param   {String}  picture
  * @param   {String}  title
  * @param   {action}  [action]
@@ -75,6 +77,8 @@ function templateImage(picture, title, action) {
   <img 
     src="${picture}"
     alt="photo de ${title}"
+    tabindex="0"
+    onkeydown="if (event.keyCode === 13) { displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}'); }"
     class="article_media_container_card_img"
     aria-label="image of ${title}"
     ${openModale(action)}
