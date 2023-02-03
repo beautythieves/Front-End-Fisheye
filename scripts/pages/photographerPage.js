@@ -134,7 +134,6 @@ async function displayPhotographer(photographer, media) {
       for (const mediaCard of media) {
         div5.innerHTML += mediaFactory(mediaCard, photographer.name);
       }
-      // updateTab()
     });
   }
   let trier = document.querySelector("#container_sortBy");

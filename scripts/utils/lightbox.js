@@ -50,8 +50,6 @@ async function displayLightBox(photographerId, id, photographer) {
             ${mediaInModal()}
           </div> 
       </div> `;
-      
-
 
   $page.appendChild($lightbox);
   // add aria-labels to buttons close, next, prev
@@ -91,7 +89,7 @@ document.addEventListener("keyup", function (e) {
   } else return;
 });
 /* go to previous media with left arrow key*/
-document.addEventListener("keyup", function (e) { 
+document.addEventListener("keyup", function (e) {
   if (e.key === "ArrowLeft") {
     prevMedia();
   } else return;
@@ -135,13 +133,12 @@ function prevMedia() {
   if (currentMediaIndex < 0) {
     currentMediaIndex = allmedias.length - 1;
   }
-    /*announce the media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
-    const media = allmedias[currentMediaIndex];
-    const title = media.title;
-    const announcement = new SpeechSynthesisUtterance(title);
-    speechSynthesis.speak(announcement);
+  /*announce the media ref https://developer.mozilla.org/fr/docs/Web/API/SpeechSynthesisUtterance*/
+  const media = allmedias[currentMediaIndex];
+  const title = media.title;
+  const announcement = new SpeechSynthesisUtterance(title);
+  speechSynthesis.speak(announcement);
   document.querySelector("#mediaInModal").innerHTML = mediaInModal();
-
 
   updateMedia();
 }
@@ -170,7 +167,7 @@ function updateMedia() {
  * @property {function} closeModalLightbox - close the lightbox
  * @property {function} nextMedia - go to the next media
  * @property {function} prevMedia - go to the previous media
- * 
+ *
  */
 const methodsToExpose = {
   displayLightBox,
@@ -184,7 +181,7 @@ const methodsToExpose = {
  * @example window.displayLightBox(1, 1, "Ellie-Rose Wilkens")
  * @example window.closeModalLightbox()
  * @param {string} methodName - the name of the method to expose
- * 
+ *
  * @returns {void}
  */
 
@@ -195,4 +192,3 @@ function exposeInWindow() {
 }
 
 export { exposeInWindow };
-

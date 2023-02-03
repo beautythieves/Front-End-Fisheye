@@ -20,8 +20,9 @@ function mediaFactory(data, photographerName) {
     id,
   };
   const templateMedia = /*html*/ `
-
-<article class="article_media" title= "photographie de ${title}"aria-label="${image ? 'image of ' : 'video of '}${title}">
+<article class="article_media" title= "photographie de ${title}"aria-label="${
+    image ? "image of " : "video of "
+  }${title}">
   <div class= "article_media_container">
     <div class= "article_media_container_card" tabindex = "-1" >
       ${
@@ -55,7 +56,9 @@ function templateVideo(videoName, action) {
     action
   )} 
   tabindex="0"
-  onkeydown="if (event.keyCode === 13) { displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}'); }"
+  onkeydown="if (event.keyCode === 13) { displayLightBox(${
+    action.photographerId
+  }, ${action.id}, '${action.photographerName}'); }"
   aria-label="video of ${action.title}"
   >
     <source src="${videoName}" type="video/mp4">
@@ -78,7 +81,9 @@ function templateImage(picture, title, action) {
     src="${picture}"
     alt="photo de ${title}"
     tabindex="0"
-    onkeydown="if (event.keyCode === 13) { displayLightBox(${action.photographerId}, ${action.id}, '${action.photographerName}'); }"
+    onkeydown="if (event.keyCode === 13) { displayLightBox(${
+      action.photographerId
+    }, ${action.id}, '${action.photographerName}'); }"
     class="article_media_container_card_img"
     aria-label="image of ${title}"
     ${openModale(action)}
