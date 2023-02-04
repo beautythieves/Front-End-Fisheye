@@ -24,7 +24,9 @@ function mediaFactory(data, photographerName) {
     image ? "image of " : "video of "
   }${title}">
   <div class= "article_media_container">
-    <div class= "article_media_container_card" tabindex = "-1" >
+    <div class= "article_media_container_card" tabindex = "-1" aria-label= aria-label="${
+      image ? "image of " : "video of "
+    }${title}"  >
       ${
         image
           ? templateImage(picture, title, action)
@@ -32,7 +34,7 @@ function mediaFactory(data, photographerName) {
       }
       <div class= "article_media_container_card_title_and_price">
         <h2 class= "article_media_container_card_title">${title}</h2>
-        <h3 class= "article_media_container_card_likes"  tabindex="0" aria-pressed="false"
+        <h3 class= "article_media_container_card_likes"  tabindex="0" aria-pressed="false" aria-label="likes"
         onkeydown="if (event.keyCode === 13) { incrementLike(this); }"
         onclick="incrementLike(this)" aria-label="j'aime">${likes} </h3>
       </div>
